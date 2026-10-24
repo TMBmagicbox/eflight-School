@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SkyLearn Aviación | Cursos online de aviación</title>
-<meta name="description" content="Plataforma de cursos online de aviación: piloto privado, instrumentos, comercial y comunicación ATC. Aprende a tu ritmo.">
+<meta name="description" content="Plataforma de cursos online de aviación.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -27,6 +27,8 @@ nav a:hover{color:var(--amber)}
 .cartbtn{position:relative;background:none;border:0;color:#fff;cursor:pointer;font-size:1.3rem}
 .cartbtn b{position:absolute;top:-8px;right:-10px;background:var(--amber);color:#000;font-size:.7rem;border-radius:999px;padding:0 6px}
 .menu{display:none;background:none;border:0;color:#fff;font-size:1.6rem}
+#lang{width:auto;padding:6px 12px;border-radius:999px;background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.35);font-size:.85rem;cursor:pointer}
+#lang option{color:#000}
 .hero{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#1c4f93);color:#fff;padding:90px 0 110px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-120px;top:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(var(--sky),transparent 70%);opacity:.35}
 .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;z-index:1}
@@ -121,16 +123,22 @@ footer li{list-style:none;padding:3px 0}
   </a>
   <nav id="nav">
    <ul>
-    <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#porque">Por qué nosotros</a></li>
-    <li><a href="#cursos">Cursos</a></li>
-    <li><a href="#planes">Planes</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#inicio" data-i18n="n_home"></a></li>
+    <li><a href="#porque" data-i18n="n_why"></a></li>
+    <li><a href="#cursos" data-i18n="n_courses"></a></li>
+    <li><a href="#planes" data-i18n="n_plans"></a></li>
+    <li><a href="#faq" data-i18n="n_faq"></a></li>
+    <li><a href="#contacto" data-i18n="n_contact"></a></li>
    </ul>
   </nav>
-  <div style="display:flex;gap:18px;align-items:center">
-   <button class="cartbtn" onclick="toggleCart()" aria-label="Carrito">🛒<b id="cnt">0</b></button>
+  <div style="display:flex;gap:14px;align-items:center">
+   <select id="lang" aria-label="Language" onchange="setLang(this.value)">
+    <option value="es">🌐 Español</option>
+    <option value="en">🌐 English</option>
+    <option value="pt">🌐 Português</option>
+    <option value="fr">🌐 Français</option>
+   </select>
+   <button class="cartbtn" onclick="toggleCart()" aria-label="Cart">🛒<b id="cnt">0</b></button>
    <button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
   </div>
  </div>
@@ -139,87 +147,87 @@ footer li{list-style:none;padding:3px 0}
 <section class="hero" id="inicio">
  <div class="wrap">
   <div>
-   <span class="tag">✈ Escuela de aviación online</span>
-   <h1>Aprende aviación <span>a tu ritmo</span>, desde cualquier lugar</h1>
-   <p>Cursos en video, simulacros de examen y mentoría con instructores. Del primer día en tierra hasta tu habilitación de vuelo por instrumentos.</p>
+   <span class="tag" data-i18n="tag"></span>
+   <h1 data-i18n="h1"></h1>
+   <p data-i18n="hero_p"></p>
    <div class="btns">
-    <a href="#cursos" class="btn">Explorar cursos</a>
-    <a href="#planes" class="btn o">Ver suscripción</a>
+    <a href="#cursos" class="btn" data-i18n="b_explore"></a>
+    <a href="#planes" class="btn o" data-i18n="b_sub"></a>
    </div>
   </div>
   <div class="stats">
-   <div class="stat"><b>40+</b>Lecciones en video</div>
-   <div class="stat"><b>500+</b>Preguntas tipo examen</div>
-   <div class="stat"><b>24/7</b>Acceso desde cualquier dispositivo</div>
-   <div class="stat"><b>4</b>Rutas de formación</div>
+   <div class="stat"><b>40+</b><span data-i18n="s1"></span></div>
+   <div class="stat"><b>500+</b><span data-i18n="s2"></span></div>
+   <div class="stat"><b>24/7</b><span data-i18n="s3"></span></div>
+   <div class="stat"><b>4</b><span data-i18n="s4"></span></div>
   </div>
  </div>
 </section>
 
 <section id="porque">
  <div class="wrap">
-  <div class="sh"><small>¿Por qué SkyLearn?</small><h2>Una forma más inteligente de estudiar aviación</h2><p>Flexibilidad total para quienes combinan estudio, trabajo y entrenamiento de vuelo.</p></div>
+  <div class="sh"><small data-i18n="why_s"></small><h2 data-i18n="why_h"></h2><p data-i18n="why_p"></p></div>
   <div class="grid4">
-   <div class="feat"><i>🎓</i><h3>Aprende fácil</h3><p>Lecciones claras que convierten temas complejos en pasos simples y comprensibles.</p></div>
-   <div class="feat"><i>📱</i><h3>Estudia a tu horario</h3><p>Accede desde teléfono, tablet o computadora. Pausa y retoma justo donde lo dejaste.</p></div>
-   <div class="feat"><i>📝</i><h3>Practica como en el examen</h3><p>Múltiples simulacros y cientos de preguntas con explicación de cada respuesta.</p></div>
-   <div class="feat"><i>🔄</i><h3>Siempre actualizado</h3><p>Revisamos la normativa y actualizamos los contenidos con regularidad.</p></div>
+   <div class="feat"><i>🎓</i><h3 data-i18n="f1h"></h3><p data-i18n="f1p"></p></div>
+   <div class="feat"><i>📱</i><h3 data-i18n="f2h"></h3><p data-i18n="f2p"></p></div>
+   <div class="feat"><i>📝</i><h3 data-i18n="f3h"></h3><p data-i18n="f3p"></p></div>
+   <div class="feat"><i>🔄</i><h3 data-i18n="f4h"></h3><p data-i18n="f4p"></p></div>
   </div>
  </div>
 </section>
 
 <section id="cursos" style="background:#fff">
  <div class="wrap">
-  <div class="sh"><small>Catálogo</small><h2>Cursos de aviación online</h2><p>Compra cursos individuales y quédate con acceso de por vida, o suscríbete a todo el catálogo.</p></div>
+  <div class="sh"><small data-i18n="cat_s"></small><h2 data-i18n="cat_h"></h2><p data-i18n="cat_p"></p></div>
   <div class="filters" id="filters"></div>
-  <input class="search" id="q" placeholder="🔍 Buscar curso…" oninput="render()">
+  <input class="search" id="q" data-i18n-ph="search_ph" oninput="render()">
   <div class="courses" id="courses"></div>
  </div>
 </section>
 
 <section class="how">
  <div class="wrap">
-  <div class="sh"><small>Cómo funciona</small><h2>Despega en 4 pasos</h2><p>Un modelo de aprendizaje sencillo, pensado para pilotos en formación.</p></div>
+  <div class="sh"><small data-i18n="how_s"></small><h2 data-i18n="how_h"></h2><p data-i18n="how_p"></p></div>
   <div class="steps">
-   <div class="step"><h3>Elige tu curso</h3><p>Selecciona tu ruta: ATC, privado, instrumentos o comercial.</p></div>
-   <div class="step"><h3>Compra o suscríbete</h3><p>Pago único por curso o plan mensual con todo incluido.</p></div>
-   <div class="step"><h3>Estudia y practica</h3><p>Videos, material descargable y simulacros con retroalimentación.</p></div>
-   <div class="step"><h3>Certifícate</h3><p>Recibe tu constancia de finalización y prepárate para tu examen.</p></div>
+   <div class="step"><h3 data-i18n="st1h"></h3><p data-i18n="st1p"></p></div>
+   <div class="step"><h3 data-i18n="st2h"></h3><p data-i18n="st2p"></p></div>
+   <div class="step"><h3 data-i18n="st3h"></h3><p data-i18n="st3p"></p></div>
+   <div class="step"><h3 data-i18n="st4h"></h3><p data-i18n="st4p"></p></div>
   </div>
  </div>
 </section>
 
 <section id="planes">
  <div class="wrap">
-  <div class="sh"><small>Planes</small><h2>Elige cómo quieres aprender</h2></div>
+  <div class="sh"><small data-i18n="pl_s"></small><h2 data-i18n="pl_h"></h2></div>
   <div class="plans">
-   <div class="plan"><h3>Curso individual</h3><div class="p">Desde $49</div><ul><li>Acceso de por vida al curso</li><li>Simulacros de examen</li><li>Material descargable</li><li>Constancia de finalización</li></ul><a href="#cursos" class="btn s">Ver cursos</a></div>
-   <div class="plan hot"><h3>Suscripción All-Access</h3><div class="p">$29<small style="font-size:.9rem">/mes</small></div><ul><li>Todo el catálogo de cursos</li><li>Nuevos cursos cada mes</li><li>Sesiones Q&amp;A con instructores</li><li>Cancela cuando quieras</li></ul><button class="btn s" onclick="toast('Suscripción: conecta tu pasarela de pago')">Suscribirme</button></div>
+   <div class="plan"><h3 data-i18n="pl1h"></h3><div class="p" data-i18n="pl1p"></div><ul><li data-i18n="pl1a"></li><li data-i18n="pl1b"></li><li data-i18n="pl1c"></li><li data-i18n="pl1d"></li></ul><a href="#cursos" class="btn s" data-i18n="view_courses"></a></div>
+   <div class="plan hot"><h3 data-i18n="pl2h"></h3><div class="p" data-i18n="pl2p"></div><ul><li data-i18n="pl2a"></li><li data-i18n="pl2b"></li><li data-i18n="pl2c"></li><li data-i18n="pl2d"></li></ul><button class="btn s" onclick="toast(t('toast_sub'))" data-i18n="subscribe"></button></div>
   </div>
  </div>
 </section>
 
 <section id="faq" style="background:#fff">
  <div class="wrap">
-  <div class="sh"><small>FAQ</small><h2>Preguntas frecuentes</h2></div>
-  <details><summary>¿Necesito experiencia previa?</summary><p>No. La ruta de piloto privado parte desde cero.</p></details>
-  <details><summary>¿Cuánto tiempo tengo acceso?</summary><p>Los cursos comprados tienen acceso de por vida; la suscripción mientras esté activa.</p></details>
-  <details><summary>¿Puedo estudiar desde el celular?</summary><p>Sí, la plataforma funciona en cualquier dispositivo y guarda tu progreso.</p></details>
-  <details><summary>¿Los cursos reemplazan las horas de vuelo?</summary><p>No. Son formación teórica (ground school) que complementa tu entrenamiento práctico con una escuela autorizada.</p></details>
+  <div class="sh"><small>FAQ</small><h2 data-i18n="faq_h"></h2></div>
+  <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+  <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+  <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+  <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
  </div>
 </section>
 
 <section id="contacto">
  <div class="wrap contact">
   <div>
-   <div class="sh" style="text-align:left;margin:0 0 20px"><small>Contacto</small><h2>¿Listo para ser piloto?</h2><p>Escríbenos y te ayudamos a elegir tu ruta de estudio.</p></div>
+   <div class="sh" style="text-align:left;margin:0 0 20px"><small data-i18n="ct_s"></small><h2 data-i18n="ct_h"></h2><p data-i18n="ct_p"></p></div>
    <p>📞 +00 000 000 0000</p><p>✉️ contacto@tudominio.com</p>
   </div>
-  <form onsubmit="event.preventDefault();toast('Mensaje enviado (demo)');this.reset()">
-   <input required placeholder="Nombre"><input required type="email" placeholder="Correo">
-   <select><option>Me interesa: ATC y fraseología</option><option>Piloto privado</option><option>Instrumentos</option><option>Comercial</option></select>
-   <textarea rows="4" placeholder="Mensaje"></textarea>
-   <button class="btn">Enviar</button>
+  <form onsubmit="event.preventDefault();toast(t('toast_sent'));this.reset()">
+   <input required data-i18n-ph="ph_name"><input required type="email" data-i18n-ph="ph_mail">
+   <select><option data-i18n="o1"></option><option data-i18n="o2"></option><option data-i18n="o3"></option><option data-i18n="o4"></option></select>
+   <textarea rows="4" data-i18n-ph="ph_msg"></textarea>
+   <button class="btn" data-i18n="send"></button>
   </form>
  </div>
 </section>
@@ -227,63 +235,226 @@ footer li{list-style:none;padding:3px 0}
 <footer>
  <div class="wrap">
   <div class="fg">
-   <div><div class="logo" style="color:#fff;margin-bottom:10px">✈ SkyLearn</div><p>Cursos online de aviación: comunicaciones, navegación, planificación de vuelo, meteorología y más.</p></div>
-   <div><h4>Explorar</h4><ul><li><a href="#porque">Por qué nosotros</a></li><li><a href="#cursos">Cursos</a></li><li><a href="#planes">Planes</a></li></ul></div>
-   <div><h4>Legal</h4><ul><li>Términos de uso</li><li>Política de privacidad</li><li><a href="#faq">FAQ</a></li></ul></div>
+   <div><div class="logo" style="color:#fff;margin-bottom:10px">✈ SkyLearn</div><p data-i18n="ft_desc"></p></div>
+   <div><h4 data-i18n="ft_explore"></h4><ul><li><a href="#porque" data-i18n="n_why"></a></li><li><a href="#cursos" data-i18n="n_courses"></a></li><li><a href="#planes" data-i18n="n_plans"></a></li></ul></div>
+   <div><h4 data-i18n="ft_legal"></h4><ul><li data-i18n="terms"></li><li data-i18n="privacy"></li><li><a href="#faq">FAQ</a></li></ul></div>
   </div>
-  <div class="copy">© 2026 SkyLearn Aviación. Todos los derechos reservados.</div>
+  <div class="copy" data-i18n="copy"></div>
  </div>
 </footer>
 
 <div id="ov" onclick="toggleCart()"></div>
 <aside id="drawer">
- <header><b>Tu carrito</b><button class="cartbtn" onclick="toggleCart()">✕</button></header>
+ <header><b data-i18n="cart_h"></b><button class="cartbtn" onclick="toggleCart()">✕</button></header>
  <div id="items"></div>
- <div class="tot"><div class="row"><span>Total</span><span id="total">$0</span></div><button class="btn" style="width:100%" onclick="checkout()">Finalizar compra</button></div>
+ <div class="tot"><div class="row"><span data-i18n="total"></span><span id="total">$0</span></div><button class="btn" style="width:100%" onclick="checkout()" data-i18n="checkout"></button></div>
 </aside>
 <div id="toast"></div>
 
 <script>
+const T={
+es:{
+ title:"SkyLearn Aviación | Cursos online de aviación",desc:"Plataforma de cursos online de aviación: piloto privado, instrumentos, comercial y comunicación ATC.",
+ n_home:"Inicio",n_why:"Por qué nosotros",n_courses:"Cursos",n_plans:"Planes",n_faq:"FAQ",n_contact:"Contacto",
+ tag:"✈ Escuela de aviación online",h1:"Aprende aviación <span>a tu ritmo</span>, desde cualquier lugar",
+ hero_p:"Cursos en video, simulacros de examen y mentoría con instructores. Del primer día en tierra hasta tu habilitación de vuelo por instrumentos.",
+ b_explore:"Explorar cursos",b_sub:"Ver suscripción",s1:"Lecciones en video",s2:"Preguntas tipo examen",s3:"Acceso desde cualquier dispositivo",s4:"Rutas de formación",
+ why_s:"¿Por qué SkyLearn?",why_h:"Una forma más inteligente de estudiar aviación",why_p:"Flexibilidad total para quienes combinan estudio, trabajo y entrenamiento de vuelo.",
+ f1h:"Aprende fácil",f1p:"Lecciones claras que convierten temas complejos en pasos simples y comprensibles.",
+ f2h:"Estudia a tu horario",f2p:"Accede desde teléfono, tablet o computadora. Pausa y retoma justo donde lo dejaste.",
+ f3h:"Practica como en el examen",f3p:"Múltiples simulacros y cientos de preguntas con explicación de cada respuesta.",
+ f4h:"Siempre actualizado",f4p:"Revisamos la normativa y actualizamos los contenidos con regularidad.",
+ cat_s:"Catálogo",cat_h:"Cursos de aviación online",cat_p:"Compra cursos individuales y quédate con acceso de por vida, o suscríbete a todo el catálogo.",
+ search_ph:"🔍 Buscar curso…",c_all:"Todos",c_atc:"ATC",c_private:"Piloto Privado",c_instrument:"Instrumentos",c_commercial:"Comercial",
+ l_basic:"Básico",l_inter:"Intermedio",l_adv:"Avanzado",l_all:"Todos",lessons:"lecciones",add:"Agregar",none:"Sin resultados.",
+ how_s:"Cómo funciona",how_h:"Despega en 4 pasos",how_p:"Un modelo de aprendizaje sencillo, pensado para pilotos en formación.",
+ st1h:"Elige tu curso",st1p:"Selecciona tu ruta: ATC, privado, instrumentos o comercial.",
+ st2h:"Compra o suscríbete",st2p:"Pago único por curso o plan mensual con todo incluido.",
+ st3h:"Estudia y practica",st3p:"Videos, material descargable y simulacros con retroalimentación.",
+ st4h:"Certifícate",st4p:"Recibe tu constancia de finalización y prepárate para tu examen.",
+ pl_s:"Planes",pl_h:"Elige cómo quieres aprender",pl1h:"Curso individual",pl1p:"Desde $49",
+ pl1a:"Acceso de por vida al curso",pl1b:"Simulacros de examen",pl1c:"Material descargable",pl1d:"Constancia de finalización",view_courses:"Ver cursos",
+ pl2h:"Suscripción All-Access",pl2p:"$29<small style='font-size:.9rem'>/mes</small>",
+ pl2a:"Todo el catálogo de cursos",pl2b:"Nuevos cursos cada mes",pl2c:"Sesiones Q&A con instructores",pl2d:"Cancela cuando quieras",subscribe:"Suscribirme",
+ faq_h:"Preguntas frecuentes",
+ q1:"¿Necesito experiencia previa?",a1:"No. La ruta de piloto privado parte desde cero.",
+ q2:"¿Cuánto tiempo tengo acceso?",a2:"Los cursos comprados tienen acceso de por vida; la suscripción mientras esté activa.",
+ q3:"¿Puedo estudiar desde el celular?",a3:"Sí, la plataforma funciona en cualquier dispositivo y guarda tu progreso.",
+ q4:"¿Los cursos reemplazan las horas de vuelo?",a4:"No. Son formación teórica (ground school) que complementa tu entrenamiento práctico con una escuela autorizada.",
+ ct_s:"Contacto",ct_h:"¿Listo para ser piloto?",ct_p:"Escríbenos y te ayudamos a elegir tu ruta de estudio.",
+ ph_name:"Nombre",ph_mail:"Correo",ph_msg:"Mensaje",o1:"Me interesa: ATC y fraseología",o2:"Piloto privado",o3:"Instrumentos",o4:"Comercial",send:"Enviar",
+ ft_desc:"Cursos online de aviación: comunicaciones, navegación, planificación de vuelo, meteorología y más.",ft_explore:"Explorar",ft_legal:"Legal",terms:"Términos de uso",privacy:"Política de privacidad",
+ copy:"© 2026 SkyLearn Aviación. Todos los derechos reservados.",
+ cart_h:"Tu carrito",total:"Total",checkout:"Finalizar compra",empty:"Tu carrito está vacío.",
+ toast_added:"Curso agregado ✓",toast_in:"Ya está en tu carrito",toast_empty:"Carrito vacío",toast_demo:"Demo: conecta Stripe / Mercado Pago aquí",
+ toast_sub:"Suscripción: conecta tu pasarela de pago",toast_sent:"Mensaje enviado (demo)"
+},
+en:{
+ title:"SkyLearn Aviation | Online aviation courses",desc:"Online aviation course platform: private pilot, instrument, commercial and ATC communication.",
+ n_home:"Home",n_why:"Why us",n_courses:"Courses",n_plans:"Plans",n_faq:"FAQ",n_contact:"Contact",
+ tag:"✈ Online aviation school",h1:"Learn aviation <span>at your own pace</span>, from anywhere",
+ hero_p:"Video courses, practice exams and instructor mentoring. From your first day on the ground to your instrument rating.",
+ b_explore:"Explore courses",b_sub:"See subscription",s1:"Video lessons",s2:"Exam-style questions",s3:"Access from any device",s4:"Training paths",
+ why_s:"Why SkyLearn?",why_h:"A smarter way to study aviation",why_p:"Total flexibility for those who balance study, work and flight training.",
+ f1h:"Learn easily",f1p:"Clear lessons that turn complex topics into simple, understandable steps.",
+ f2h:"Study on your schedule",f2p:"Access from your phone, tablet or computer. Pause and pick up right where you left off.",
+ f3h:"Practice like the real exam",f3p:"Multiple practice exams and hundreds of questions with an explanation for every answer.",
+ f4h:"Always up to date",f4p:"We review regulations and update our content regularly.",
+ cat_s:"Catalog",cat_h:"Online aviation courses",cat_p:"Buy individual courses with lifetime access, or subscribe to the entire catalog.",
+ search_ph:"🔍 Search courses…",c_all:"All",c_atc:"ATC",c_private:"Private Pilot",c_instrument:"Instrument",c_commercial:"Commercial",
+ l_basic:"Beginner",l_inter:"Intermediate",l_adv:"Advanced",l_all:"All levels",lessons:"lessons",add:"Add",none:"No results.",
+ how_s:"How it works",how_h:"Take off in 4 steps",how_p:"A simple learning model designed for student pilots.",
+ st1h:"Choose your course",st1p:"Select your path: ATC, private, instrument or commercial.",
+ st2h:"Buy or subscribe",st2p:"One-time payment per course or an all-inclusive monthly plan.",
+ st3h:"Study and practice",st3p:"Videos, downloadable material and practice exams with feedback.",
+ st4h:"Get certified",st4p:"Receive your completion certificate and get ready for your exam.",
+ pl_s:"Plans",pl_h:"Choose how you want to learn",pl1h:"Single course",pl1p:"From $49",
+ pl1a:"Lifetime access to the course",pl1b:"Practice exams",pl1c:"Downloadable material",pl1d:"Completion certificate",view_courses:"View courses",
+ pl2h:"All-Access subscription",pl2p:"$29<small style='font-size:.9rem'>/mo</small>",
+ pl2a:"The entire course catalog",pl2b:"New courses every month",pl2c:"Q&A sessions with instructors",pl2d:"Cancel anytime",subscribe:"Subscribe",
+ faq_h:"Frequently asked questions",
+ q1:"Do I need prior experience?",a1:"No. The private pilot path starts from zero.",
+ q2:"How long do I have access?",a2:"Purchased courses have lifetime access; the subscription lasts while it is active.",
+ q3:"Can I study from my phone?",a3:"Yes, the platform works on any device and saves your progress.",
+ q4:"Do the courses replace flight hours?",a4:"No. They are theoretical training (ground school) that complements your practical training with an authorized school.",
+ ct_s:"Contact",ct_h:"Ready to become a pilot?",ct_p:"Write to us and we'll help you choose your study path.",
+ ph_name:"Name",ph_mail:"Email",ph_msg:"Message",o1:"I'm interested in: ATC & phraseology",o2:"Private pilot",o3:"Instrument",o4:"Commercial",send:"Send",
+ ft_desc:"Online aviation courses: communications, navigation, flight planning, meteorology and more.",ft_explore:"Explore",ft_legal:"Legal",terms:"Terms of use",privacy:"Privacy policy",
+ copy:"© 2026 SkyLearn Aviation. All rights reserved.",
+ cart_h:"Your cart",total:"Total",checkout:"Checkout",empty:"Your cart is empty.",
+ toast_added:"Course added ✓",toast_in:"Already in your cart",toast_empty:"Cart is empty",toast_demo:"Demo: connect Stripe / your payment gateway here",
+ toast_sub:"Subscription: connect your payment gateway",toast_sent:"Message sent (demo)"
+},
+pt:{
+ title:"SkyLearn Aviação | Cursos online de aviação",desc:"Plataforma de cursos online de aviação: piloto privado, instrumentos, comercial e comunicação ATC.",
+ n_home:"Início",n_why:"Por que nós",n_courses:"Cursos",n_plans:"Planos",n_faq:"FAQ",n_contact:"Contato",
+ tag:"✈ Escola de aviação online",h1:"Aprenda aviação <span>no seu ritmo</span>, de qualquer lugar",
+ hero_p:"Cursos em vídeo, simulados de prova e mentoria com instrutores. Do primeiro dia em solo até a sua habilitação por instrumentos.",
+ b_explore:"Explorar cursos",b_sub:"Ver assinatura",s1:"Aulas em vídeo",s2:"Questões estilo prova",s3:"Acesso de qualquer dispositivo",s4:"Trilhas de formação",
+ why_s:"Por que a SkyLearn?",why_h:"Uma forma mais inteligente de estudar aviação",why_p:"Total flexibilidade para quem concilia estudo, trabalho e treinamento de voo.",
+ f1h:"Aprenda fácil",f1p:"Aulas claras que transformam temas complexos em passos simples e compreensíveis.",
+ f2h:"Estude no seu horário",f2p:"Acesse pelo celular, tablet ou computador. Pause e retome exatamente de onde parou.",
+ f3h:"Pratique como na prova",f3p:"Vários simulados e centenas de questões com explicação de cada resposta.",
+ f4h:"Sempre atualizado",f4p:"Revisamos a regulamentação e atualizamos os conteúdos regularmente.",
+ cat_s:"Catálogo",cat_h:"Cursos de aviação online",cat_p:"Compre cursos individuais com acesso vitalício ou assine todo o catálogo.",
+ search_ph:"🔍 Buscar curso…",c_all:"Todos",c_atc:"ATC",c_private:"Piloto Privado",c_instrument:"Instrumentos",c_commercial:"Comercial",
+ l_basic:"Básico",l_inter:"Intermediário",l_adv:"Avançado",l_all:"Todos os níveis",lessons:"aulas",add:"Adicionar",none:"Nenhum resultado.",
+ how_s:"Como funciona",how_h:"Decole em 4 passos",how_p:"Um modelo de aprendizado simples, pensado para pilotos em formação.",
+ st1h:"Escolha seu curso",st1p:"Selecione sua trilha: ATC, privado, instrumentos ou comercial.",
+ st2h:"Compre ou assine",st2p:"Pagamento único por curso ou plano mensal com tudo incluído.",
+ st3h:"Estude e pratique",st3p:"Vídeos, material para download e simulados com feedback.",
+ st4h:"Certifique-se",st4p:"Receba seu certificado de conclusão e prepare-se para a prova.",
+ pl_s:"Planos",pl_h:"Escolha como quer aprender",pl1h:"Curso individual",pl1p:"A partir de $49",
+ pl1a:"Acesso vitalício ao curso",pl1b:"Simulados de prova",pl1c:"Material para download",pl1d:"Certificado de conclusão",view_courses:"Ver cursos",
+ pl2h:"Assinatura All-Access",pl2p:"$29<small style='font-size:.9rem'>/mês</small>",
+ pl2a:"Todo o catálogo de cursos",pl2b:"Novos cursos todo mês",pl2c:"Sessões de perguntas com instrutores",pl2d:"Cancele quando quiser",subscribe:"Assinar",
+ faq_h:"Perguntas frequentes",
+ q1:"Preciso de experiência prévia?",a1:"Não. A trilha de piloto privado começa do zero.",
+ q2:"Por quanto tempo tenho acesso?",a2:"Os cursos comprados têm acesso vitalício; a assinatura enquanto estiver ativa.",
+ q3:"Posso estudar pelo celular?",a3:"Sim, a plataforma funciona em qualquer dispositivo e salva seu progresso.",
+ q4:"Os cursos substituem as horas de voo?",a4:"Não. São formação teórica (ground school) que complementa seu treinamento prático em uma escola autorizada.",
+ ct_s:"Contato",ct_h:"Pronto para ser piloto?",ct_p:"Escreva para nós e ajudamos você a escolher sua trilha de estudo.",
+ ph_name:"Nome",ph_mail:"E-mail",ph_msg:"Mensagem",o1:"Tenho interesse em: ATC e fraseologia",o2:"Piloto privado",o3:"Instrumentos",o4:"Comercial",send:"Enviar",
+ ft_desc:"Cursos online de aviação: comunicações, navegação, planejamento de voo, meteorologia e mais.",ft_explore:"Explorar",ft_legal:"Legal",terms:"Termos de uso",privacy:"Política de privacidade",
+ copy:"© 2026 SkyLearn Aviação. Todos os direitos reservados.",
+ cart_h:"Seu carrinho",total:"Total",checkout:"Finalizar compra",empty:"Seu carrinho está vazio.",
+ toast_added:"Curso adicionado ✓",toast_in:"Já está no seu carrinho",toast_empty:"Carrinho vazio",toast_demo:"Demo: conecte Stripe / seu gateway de pagamento aqui",
+ toast_sub:"Assinatura: conecte seu gateway de pagamento",toast_sent:"Mensagem enviada (demo)"
+},
+fr:{
+ title:"SkyLearn Aviation | Cours d'aviation en ligne",desc:"Plateforme de cours d'aviation en ligne : pilote privé, instruments, commercial et communication ATC.",
+ n_home:"Accueil",n_why:"Pourquoi nous",n_courses:"Cours",n_plans:"Offres",n_faq:"FAQ",n_contact:"Contact",
+ tag:"✈ École d'aviation en ligne",h1:"Apprenez l'aviation <span>à votre rythme</span>, où que vous soyez",
+ hero_p:"Cours en vidéo, examens blancs et mentorat avec des instructeurs. Du premier jour au sol jusqu'à votre qualification aux instruments.",
+ b_explore:"Découvrir les cours",b_sub:"Voir l'abonnement",s1:"Leçons vidéo",s2:"Questions type examen",s3:"Accès depuis tout appareil",s4:"Parcours de formation",
+ why_s:"Pourquoi SkyLearn ?",why_h:"Une façon plus intelligente d'étudier l'aviation",why_p:"Une flexibilité totale pour ceux qui concilient études, travail et entraînement en vol.",
+ f1h:"Apprenez facilement",f1p:"Des leçons claires qui transforment les sujets complexes en étapes simples.",
+ f2h:"Étudiez à votre rythme",f2p:"Accédez-y depuis votre téléphone, tablette ou ordinateur. Mettez en pause et reprenez où vous vous êtes arrêté.",
+ f3h:"Entraînez-vous comme à l'examen",f3p:"Plusieurs examens blancs et des centaines de questions avec explication de chaque réponse.",
+ f4h:"Toujours à jour",f4p:"Nous suivons la réglementation et mettons à jour les contenus régulièrement.",
+ cat_s:"Catalogue",cat_h:"Cours d'aviation en ligne",cat_p:"Achetez des cours à l'unité avec accès à vie, ou abonnez-vous à tout le catalogue.",
+ search_ph:"🔍 Rechercher un cours…",c_all:"Tous",c_atc:"ATC",c_private:"Pilote privé",c_instrument:"Instruments",c_commercial:"Commercial",
+ l_basic:"Débutant",l_inter:"Intermédiaire",l_adv:"Avancé",l_all:"Tous niveaux",lessons:"leçons",add:"Ajouter",none:"Aucun résultat.",
+ how_s:"Comment ça marche",how_h:"Décollez en 4 étapes",how_p:"Un modèle d'apprentissage simple, pensé pour les pilotes en formation.",
+ st1h:"Choisissez votre cours",st1p:"Sélectionnez votre parcours : ATC, privé, instruments ou commercial.",
+ st2h:"Achetez ou abonnez-vous",st2p:"Paiement unique par cours ou abonnement mensuel tout compris.",
+ st3h:"Étudiez et pratiquez",st3p:"Vidéos, documents à télécharger et examens blancs avec correction.",
+ st4h:"Certifiez-vous",st4p:"Recevez votre attestation de réussite et préparez votre examen.",
+ pl_s:"Offres",pl_h:"Choisissez comment apprendre",pl1h:"Cours à l'unité",pl1p:"À partir de $49",
+ pl1a:"Accès à vie au cours",pl1b:"Examens blancs",pl1c:"Documents à télécharger",pl1d:"Attestation de réussite",view_courses:"Voir les cours",
+ pl2h:"Abonnement All-Access",pl2p:"$29<small style='font-size:.9rem'>/mois</small>",
+ pl2a:"Tout le catalogue de cours",pl2b:"De nouveaux cours chaque mois",pl2c:"Sessions de questions avec les instructeurs",pl2d:"Résiliable à tout moment",subscribe:"S'abonner",
+ faq_h:"Questions fréquentes",
+ q1:"Ai-je besoin d'expérience ?",a1:"Non. Le parcours pilote privé part de zéro.",
+ q2:"Combien de temps ai-je accès ?",a2:"Les cours achetés sont accessibles à vie ; l'abonnement tant qu'il est actif.",
+ q3:"Puis-je étudier depuis mon téléphone ?",a3:"Oui, la plateforme fonctionne sur tout appareil et enregistre votre progression.",
+ q4:"Les cours remplacent-ils les heures de vol ?",a4:"Non. C'est une formation théorique (ground school) qui complète votre entraînement pratique dans une école agréée.",
+ ct_s:"Contact",ct_h:"Prêt à devenir pilote ?",ct_p:"Écrivez-nous et nous vous aiderons à choisir votre parcours.",
+ ph_name:"Nom",ph_mail:"E-mail",ph_msg:"Message",o1:"Je suis intéressé par : ATC et phraséologie",o2:"Pilote privé",o3:"Instruments",o4:"Commercial",send:"Envoyer",
+ ft_desc:"Cours d'aviation en ligne : communications, navigation, préparation de vol, météorologie et plus.",ft_explore:"Explorer",ft_legal:"Mentions légales",terms:"Conditions d'utilisation",privacy:"Politique de confidentialité",
+ copy:"© 2026 SkyLearn Aviation. Tous droits réservés.",
+ cart_h:"Votre panier",total:"Total",checkout:"Passer la commande",empty:"Votre panier est vide.",
+ toast_added:"Cours ajouté ✓",toast_in:"Déjà dans votre panier",toast_empty:"Panier vide",toast_demo:"Démo : connectez Stripe / votre passerelle de paiement ici",
+ toast_sub:"Abonnement : connectez votre passerelle de paiement",toast_sent:"Message envoyé (démo)"
+}};
+
 const COURSES=[
- {id:1,t:"Comunicación ATC y fraseología",c:"ATC",l:"Básico",h:6,n:18,p:49,o:79,e:"🎧",g:"#2ea3f2,#12305f",r:4.8},
- {id:2,t:"Fraseología avanzada en espacio controlado",c:"ATC",l:"Avanzado",h:5,n:14,p:59,o:89,e:"📡",g:"#6c5ce7,#12305f",r:4.7},
- {id:3,t:"Piloto privado: Ground School completo",c:"Piloto Privado",l:"Básico",h:30,n:42,p:129,o:199,e:"🛩️",g:"#00b894,#0b3d5e",r:4.9},
- {id:4,t:"Aerodinámica y principios de vuelo",c:"Piloto Privado",l:"Básico",h:8,n:20,p:49,o:79,e:"🌬️",g:"#0984e3,#0b1d3a",r:4.8},
- {id:5,t:"Meteorología para pilotos",c:"Piloto Privado",l:"Intermedio",h:10,n:24,p:69,o:99,e:"⛅",g:"#74b9ff,#2d3436",r:4.7},
- {id:6,t:"Navegación y planificación de vuelo",c:"Piloto Privado",l:"Intermedio",h:9,n:22,p:69,o:99,e:"🧭",g:"#fdcb6e,#e17055",r:4.8},
- {id:7,t:"Piloto de instrumentos: Ground School",c:"Instrumentos",l:"Intermedio",h:28,n:38,p:149,o:229,e:"🎛️",g:"#e17055,#2d3436",r:4.9},
- {id:8,t:"Procedimientos de aproximación IFR",c:"Instrumentos",l:"Avanzado",h:12,n:26,p:89,o:129,e:"📈",g:"#a29bfe,#0b1d3a",r:4.8},
- {id:9,t:"Piloto comercial: Ground School",c:"Comercial",l:"Avanzado",h:32,n:44,p:169,o:249,e:"🛫",g:"#d63031,#0b1d3a",r:4.9},
- {id:10,t:"Sistemas de aeronave y performance",c:"Comercial",l:"Avanzado",h:14,n:28,p:99,o:149,e:"⚙️",g:"#636e72,#0b1d3a",r:4.7},
- {id:11,t:"Factores humanos y CRM",c:"Comercial",l:"Intermedio",h:6,n:15,p:49,o:79,e:"🧠",g:"#e84393,#12305f",r:4.8},
- {id:12,t:"Simulacros de examen de conocimientos",c:"Piloto Privado",l:"Todos",h:5,n:10,p:39,o:59,e:"📝",g:"#00cec9,#12305f",r:4.9}
+ {id:1,k:"atc",l:"basic",h:6,n:18,p:49,o:79,e:"🎧",g:"#2ea3f2,#12305f",r:4.8,t:{es:"Comunicación ATC y fraseología",en:"ATC Communication & Phraseology",pt:"Comunicação ATC e fraseologia",fr:"Communication ATC et phraséologie"}},
+ {id:2,k:"atc",l:"adv",h:5,n:14,p:59,o:89,e:"📡",g:"#6c5ce7,#12305f",r:4.7,t:{es:"Fraseología avanzada en espacio controlado",en:"Advanced Phraseology in Controlled Airspace",pt:"Fraseologia avançada em espaço aéreo controlado",fr:"Phraséologie avancée en espace contrôlé"}},
+ {id:3,k:"private",l:"basic",h:30,n:42,p:129,o:199,e:"🛩️",g:"#00b894,#0b3d5e",r:4.9,t:{es:"Piloto privado: Ground School completo",en:"Private Pilot: Complete Ground School",pt:"Piloto privado: Ground School completo",fr:"Pilote privé : Ground School complet"}},
+ {id:4,k:"private",l:"basic",h:8,n:20,p:49,o:79,e:"🌬️",g:"#0984e3,#0b1d3a",r:4.8,t:{es:"Aerodinámica y principios de vuelo",en:"Aerodynamics & Principles of Flight",pt:"Aerodinâmica e princípios de voo",fr:"Aérodynamique et principes du vol"}},
+ {id:5,k:"private",l:"inter",h:10,n:24,p:69,o:99,e:"⛅",g:"#74b9ff,#2d3436",r:4.7,t:{es:"Meteorología para pilotos",en:"Meteorology for Pilots",pt:"Meteorologia para pilotos",fr:"Météorologie pour pilotes"}},
+ {id:6,k:"private",l:"inter",h:9,n:22,p:69,o:99,e:"🧭",g:"#fdcb6e,#e17055",r:4.8,t:{es:"Navegación y planificación de vuelo",en:"Navigation & Flight Planning",pt:"Navegação e planejamento de voo",fr:"Navigation et préparation du vol"}},
+ {id:7,k:"instrument",l:"inter",h:28,n:38,p:149,o:229,e:"🎛️",g:"#e17055,#2d3436",r:4.9,t:{es:"Piloto de instrumentos: Ground School",en:"Instrument Pilot: Ground School",pt:"Piloto por instrumentos: Ground School",fr:"Pilote aux instruments : Ground School"}},
+ {id:8,k:"instrument",l:"adv",h:12,n:26,p:89,o:129,e:"📈",g:"#a29bfe,#0b1d3a",r:4.8,t:{es:"Procedimientos de aproximación IFR",en:"IFR Approach Procedures",pt:"Procedimentos de aproximação IFR",fr:"Procédures d'approche IFR"}},
+ {id:9,k:"commercial",l:"adv",h:32,n:44,p:169,o:249,e:"🛫",g:"#d63031,#0b1d3a",r:4.9,t:{es:"Piloto comercial: Ground School",en:"Commercial Pilot: Ground School",pt:"Piloto comercial: Ground School",fr:"Pilote professionnel : Ground School"}},
+ {id:10,k:"commercial",l:"adv",h:14,n:28,p:99,o:149,e:"⚙️",g:"#636e72,#0b1d3a",r:4.7,t:{es:"Sistemas de aeronave y performance",en:"Aircraft Systems & Performance",pt:"Sistemas de aeronave e performance",fr:"Systèmes de l'aéronef et performances"}},
+ {id:11,k:"commercial",l:"inter",h:6,n:15,p:49,o:79,e:"🧠",g:"#e84393,#12305f",r:4.8,t:{es:"Factores humanos y CRM",en:"Human Factors & CRM",pt:"Fatores humanos e CRM",fr:"Facteurs humains et CRM"}},
+ {id:12,k:"private",l:"all",h:5,n:10,p:39,o:59,e:"📝",g:"#00cec9,#12305f",r:4.9,t:{es:"Simulacros de examen de conocimientos",en:"Knowledge Test Practice Exams",pt:"Simulados da prova de conhecimentos",fr:"Examens blancs de connaissances théoriques"}}
 ];
-let cart=JSON.parse(localStorage.getItem("cart")||"[]"),cat="Todos";
-const cats=["Todos",...new Set(COURSES.map(c=>c.c))];
-document.getElementById("filters").innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" onclick="setCat('${c}')">${c}</button>`).join("");
-function setCat(c){cat=c;document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("on",b.textContent===c));render()}
+const KEYS=["all","atc","private","instrument","commercial"];
+const SUP=Object.keys(T);
+let lang=localStorage.getItem("lang")||(navigator.language||"es").slice(0,2).toLowerCase();
+if(!SUP.includes(lang))lang="en";
+let cart=JSON.parse(localStorage.getItem("cart")||"[]"),cat="all";
+const t=k=>(T[lang]&&T[lang][k])||T.es[k]||k;
+
+function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
+function applyLang(){
+ document.documentElement.lang=lang;
+ document.title=t("title");
+ document.querySelector('meta[name=description]').content=t("desc");
+ document.getElementById("lang").value=lang;
+ document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=t(e.dataset.i18n));
+ document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
+ buildFilters();render();drawCart();
+}
+function buildFilters(){
+ document.getElementById("filters").innerHTML=KEYS.map(k=>`<button class="chip ${k===cat?'on':''}" onclick="setCat('${k}')">${t('c_'+k)}</button>`).join("");
+}
+function setCat(k){cat=k;buildFilters();render()}
 function render(){
  const q=document.getElementById("q").value.toLowerCase();
- document.getElementById("courses").innerHTML=COURSES.filter(c=>(cat==="Todos"||c.c===cat)&&c.t.toLowerCase().includes(q)).map(c=>`
- <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${c.l}</span>${c.e}</div>
- <div class="cb"><small style="color:var(--sky);font-weight:700">${c.c}</small><h3>${c.t}</h3>
- <div class="meta"><span>⏱ ${c.h} h</span><span>🎬 ${c.n} lecciones</span></div>
+ document.getElementById("courses").innerHTML=COURSES.filter(c=>(cat==="all"||c.k===cat)&&c.t[lang].toLowerCase().includes(q)).map(c=>`
+ <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span>${c.e}</div>
+ <div class="cb"><small style="color:var(--sky);font-weight:700">${t('c_'+c.k)}</small><h3>${c.t[lang]}</h3>
+ <div class="meta"><span>⏱ ${c.h} h</span><span>🎬 ${c.n} ${t('lessons')}</span></div>
  <div class="stars">${"★".repeat(Math.round(c.r))} <span style="color:var(--mut)">${c.r}</span></div>
- <div class="cf"><div class="price">$${c.p}<s>$${c.o}</s></div><button class="btn s" onclick="add(${c.id})">Agregar</button></div></div></div>`).join("")||"<p style='text-align:center;grid-column:1/-1;color:var(--mut)'>Sin resultados.</p>";
+ <div class="cf"><div class="price">$${c.p}<s>$${c.o}</s></div><button class="btn s" onclick="add(${c.id})">${t('add')}</button></div></div></div>`).join("")||`<p style='text-align:center;grid-column:1/-1;color:var(--mut)'>${t('none')}</p>`;
 }
 function save(){localStorage.setItem("cart",JSON.stringify(cart));drawCart()}
-function add(id){if(cart.includes(id))return toast("Ya está en tu carrito");cart.push(id);save();toast("Curso agregado ✓")}
+function add(id){if(cart.includes(id))return toast(t("toast_in"));cart.push(id);save();toast(t("toast_added"))}
 function rm(id){cart=cart.filter(i=>i!==id);save()}
 function drawCart(){
  document.getElementById("cnt").textContent=cart.length;
  const list=cart.map(i=>COURSES.find(c=>c.id===i));
- document.getElementById("items").innerHTML=list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${c.e}</div><div><b>${c.t}</b><br>$${c.p}</div><button onclick="rm(${c.id})">🗑</button></div>`).join("")||"<p style='color:var(--mut);padding:20px 0'>Tu carrito está vacío.</p>";
+ document.getElementById("items").innerHTML=list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${c.e}</div><div><b>${c.t[lang]}</b><br>$${c.p}</div><button onclick="rm(${c.id})">🗑</button></div>`).join("")||`<p style='color:var(--mut);padding:20px 0'>${t('empty')}</p>`;
  document.getElementById("total").textContent="$"+list.reduce((s,c)=>s+c.p,0);
 }
 function toggleCart(){document.getElementById("drawer").classList.toggle("open");document.getElementById("ov").classList.toggle("on")}
-function checkout(){if(!cart.length)return toast("Carrito vacío");toast("Demo: conecta Stripe / Mercado Pago aquí")}
-function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200)}
-render();drawCart();
+function checkout(){if(!cart.length)return toast(t("toast_empty"));toast(t("toast_demo"))}
+function toast(m){const e=document.getElementById("toast");e.textContent=m;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),2200)}
+applyLang();
 </script>
 </body>
 </html>
