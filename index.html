@@ -27,8 +27,11 @@ nav a:hover{color:var(--amber)}
 .cartbtn{position:relative;background:none;border:0;color:#fff;cursor:pointer;font-size:1.3rem}
 .cartbtn b{position:absolute;top:-8px;right:-10px;background:var(--amber);color:#000;font-size:.7rem;border-radius:999px;padding:0 6px}
 .menu{display:none;background:none;border:0;color:#fff;font-size:1.6rem}
-#lang{width:auto;padding:6px 12px;border-radius:999px;background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.35);font-size:.85rem;cursor:pointer}
-#lang option{color:#000}
+.langs{display:flex;gap:6px}
+.langs button{background:none;border:2px solid transparent;border-radius:6px;padding:2px;cursor:pointer;opacity:.55;line-height:0;transition:.2s}
+.langs button:hover{opacity:1}
+.langs button.on{opacity:1;border-color:var(--amber)}
+.langs img{width:26px;height:18px;object-fit:cover;border-radius:3px;display:block}
 .hero{background:linear-gradient(135deg,var(--navy),var(--navy2) 60%,#1c4f93);color:#fff;padding:90px 0 110px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-120px;top:-80px;width:520px;height:520px;border-radius:50%;background:radial-gradient(var(--sky),transparent 70%);opacity:.35}
 .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;z-index:1}
@@ -132,12 +135,12 @@ footer li{list-style:none;padding:3px 0}
    </ul>
   </nav>
   <div style="display:flex;gap:14px;align-items:center">
-   <select id="lang" aria-label="Language" onchange="setLang(this.value)">
-    <option value="es">🌐 Español</option>
-    <option value="en">🌐 English</option>
-    <option value="pt">🌐 Português</option>
-    <option value="fr">🌐 Français</option>
-   </select>
+   <div class="langs" id="langs" role="group" aria-label="Language">
+    <button data-l="es" title="Español" onclick="setLang('es')"><img src="https://flagcdn.com/w40/mx.png" srcset="https://flagcdn.com/w80/mx.png 2x" alt="Español"></button>
+    <button data-l="en" title="English" onclick="setLang('en')"><img src="https://flagcdn.com/w40/us.png" srcset="https://flagcdn.com/w80/us.png 2x" alt="English"></button>
+    <button data-l="pt" title="Português" onclick="setLang('pt')"><img src="https://flagcdn.com/w40/br.png" srcset="https://flagcdn.com/w80/br.png 2x" alt="Português"></button>
+    <button data-l="fr" title="Français" onclick="setLang('fr')"><img src="https://flagcdn.com/w40/fr.png" srcset="https://flagcdn.com/w80/fr.png 2x" alt="Français"></button>
+   </div>
    <button class="cartbtn" onclick="toggleCart()" aria-label="Cart">🛒<b id="cnt">0</b></button>
    <button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
   </div>
@@ -424,7 +427,7 @@ function applyLang(){
  document.documentElement.lang=lang;
  document.title=t("title");
  document.querySelector('meta[name=description]').content=t("desc");
- document.getElementById("lang").value=lang;
+ document.querySelectorAll("#langs button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
  document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=t(e.dataset.i18n));
  document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
  buildFilters();render();drawCart();
