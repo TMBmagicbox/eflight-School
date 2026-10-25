@@ -12,17 +12,20 @@
 </head>
 <body data-page="contact">
 <div id="hdr"></div>
-<section class="pagehead"><div class="wrap"><h1 data-i18n="ct_h"></h1><p data-i18n="ct_p"></p></div></section>
+<section class="pagehead"><div class="wrap"><h1 data-i18n="ct_h"></h1><p data-i18n="slogan"></p></div></section>
 <section><div class="wrap contact">
- <div><p>📞 +00 000 000 0000</p><p>✉️ contacto@tudominio.com</p></div>
+ <div><p><b data-i18n="ct_email_l"></b><br>✉️ <a href="mailto:info@eflightschool.com">info@eflightschool.com</a></p><br>
+  <p><b data-i18n="ct_phone_l"></b><br>📞 <a href="tel:+17868463505">+1 (786) 846 3505</a></p></div>
+ <div><h2 data-i18n="ct_send_h"></h2><p style="color:var(--mut);margin:8px 0 16px" data-i18n="ct_send_p"></p>
  <form onsubmit="event.preventDefault();toast(t('toast_sent'));this.reset()">
-  <input required data-i18n-ph="ph_name"><input required type="email" data-i18n-ph="ph_mail">
+  <input required data-i18n-ph="ph_name"><input data-i18n-ph="ph_phone"><input required type="email" data-i18n-ph="ph_mail">
   <select><option data-i18n="o1"></option><option data-i18n="o2"></option><option data-i18n="o3"></option><option data-i18n="o4"></option></select>
   <textarea rows="4" data-i18n-ph="ph_msg"></textarea><button class="btn" data-i18n="send"></button>
- </form></div></section>
+ </form></div></div></section>
 <div id="ftr"></div>
 <script src="data.js"></script>
 <script src="extra.js"></script>
+<script src="extra2.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -153,3 +153,7 @@ nav a.act{color:var(--amber)}
 .partners{padding:26px 0;background:#fff;border-bottom:1px solid #e3eaf4}
 .partners .wrap{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
 .partners img{height:64px;width:auto}
+.pil{background:linear-gradient(135deg,var(--navy),#1c4f93);color:#fff;border-radius:var(--r);padding:50px 36px;min-height:300px;display:flex;flex-direction:column;justify-content:center}
+.pil h2{font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;margin:0}
+.pil h2:nth-child(2){color:var(--amber)}
+.pil p{margin-top:16px;color:#cfdbf0;font-size:1.05rem}

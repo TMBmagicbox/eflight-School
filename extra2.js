@@ -1,0 +1,73 @@
+/* Contenido institucional de eFlight School (About, FAQ, ATC, Contacto) en 4 idiomas */
+Object.assign(T.en,{
+ n_about:"About Us",ab_title:"About Us",slogan:"Innovation, Precision, and Passion: We Train Pilots for a Future Without Limits.",
+ pil:"Be a Pilot|In Command|Meet and exceed FAA standards",ab_found_h:"Founded in 2024,",
+ ab_p1:"eFlight School launched its comprehensive online ground training program in 2025. Since its inception, the school has become a recognized leader in aviation knowledge instruction, providing structured preparation for the FAA Private Pilot Written Exam and supporting the broader requirements of pilot certification.",
+ ab_p2:"At eFlight School, we emphasize that ground training is as essential as flight training. Pilots who master aeronautical theory—covering aerodynamics, navigation, weather, regulations, and aircraft systems—are able to progress more efficiently in the cockpit, ultimately reducing both training time and cost.",
+ ab_b1:"Successfully complete the written exam on their first attempt",ab_b2:"Transition smoothly into flight training with confidence",
+ ab_p3:"Through our Part 91–aligned curriculum and the expertise of certified instructors, eFlight School provides the academic rigor and professional guidance essential for today's aspiring pilots.",
+ fq0:"What makes eFlight School different?",fa0:"We don't just teach you to pass the test—we teach you to proficiency. Many students cram and memorize answers, but that only creates gaps you'll have to fix later in the airplane ($200–$300 per hour). Our program includes double the content of many alternatives, so you'll be better prepared for flight training and your checkride. This saves you both time and money.",
+ atc_intro:"Air Traffic Control (ATC) communication is one of the most important skills in aviation. Effective radio use ensures safety, efficiency, and compliance with regulations. Pilots are required to communicate using standard ICAO or FAA phraseology, which minimizes ambiguity and promotes quick understanding between pilots and controllers.",
+ atc_kh:"Key elements include:",
+ atc_k1:"Brevity and Clarity|Keep transmissions short, professional, and to the point. Avoid unnecessary words.",
+ atc_k2:"Readbacks|Pilots must repeat back critical instructions such as clearances, headings, altitudes, runway assignments, and squawk codes to confirm accuracy.",
+ atc_k3:"Standard Phraseology|Using phrases like “Wilco,” “Standby,” “Unable,” or “Say again” prevents misinterpretation.",
+ atc_k4:"Radio Discipline|Always listen before transmitting to avoid stepping on another transmission. Use the proper order: who you are calling, who you are, where you are, and what you want. Example: “Cancun Tower, N123AB, holding short Runway 12, ready for departure.”",
+ atc_k5:"Situational Awareness|Good ATC communication supports traffic awareness, terrain avoidance, and weather updates.",
+ atc_outro:"During all phases of flight—ground, departure, en route, and approach—clear communication with ATC ensures proper traffic separation and provides pilots with essential information for decision-making. Developing confidence on the radio takes practice, but it's a core skill for safe and professional flying.",
+ ct_email_l:"Email Support",ct_phone_l:"Let's Talk",ct_send_h:"Send Us a Message",ct_send_p:"Got questions or ideas? Reach out—we're here to connect and create something amazing together.",ph_phone:"Phone"
+});
+Object.assign(T.es,{
+ n_about:"Sobre nosotros",ab_title:"Sobre nosotros",slogan:"Innovación, precisión y pasión: formamos pilotos para un futuro sin límites.",
+ pil:"Sé piloto|al mando|Cumple y supera los estándares de la FAA",ab_found_h:"Fundada en 2024,",
+ ab_p1:"eFlight School lanzó en 2025 su programa integral de formación teórica en línea. Desde sus inicios, la escuela se ha consolidado como referente en la enseñanza de conocimientos aeronáuticos, con una preparación estructurada para el examen escrito de piloto privado de la FAA y apoyo a los requisitos generales de la certificación de piloto.",
+ ab_p2:"En eFlight School sostenemos que la formación en tierra es tan esencial como la de vuelo. Los pilotos que dominan la teoría aeronáutica (aerodinámica, navegación, meteorología, regulaciones y sistemas de la aeronave) avanzan con más eficiencia en cabina, lo que reduce el tiempo y el costo del entrenamiento.",
+ ab_b1:"Aprobar el examen escrito al primer intento",ab_b2:"Pasar con confianza y fluidez al entrenamiento de vuelo",
+ ab_p3:"Con un currículo alineado a la Parte 91 y la experiencia de instructores certificados, eFlight School ofrece el rigor académico y la guía profesional que necesitan los aspirantes a piloto de hoy.",
+ fq0:"¿Qué hace diferente a eFlight School?",fa0:"No solo te enseñamos a aprobar el examen: te enseñamos hasta alcanzar la competencia. Muchos estudiantes memorizan respuestas, pero eso deja vacíos que luego hay que corregir en el avión (a $200–$300 por hora). Nuestro programa incluye el doble de contenido que muchas alternativas, así llegarás mejor preparado al entrenamiento de vuelo y a tu examen práctico. Así ahorras tiempo y dinero.",
+ atc_intro:"La comunicación con el control de tránsito aéreo (ATC) es una de las habilidades más importantes de la aviación. Un uso eficaz de la radio garantiza seguridad, eficiencia y cumplimiento de la normativa. Los pilotos deben comunicarse con la fraseología estándar de la OACI o la FAA, que reduce la ambigüedad y favorece la comprensión rápida entre pilotos y controladores.",
+ atc_kh:"Los elementos clave son:",
+ atc_k1:"Brevedad y claridad|Mantén las transmisiones cortas, profesionales y directas. Evita palabras innecesarias.",
+ atc_k2:"Colaciones (readbacks)|Los pilotos deben repetir las instrucciones críticas, como autorizaciones, rumbos, altitudes, pistas asignadas y códigos de transpondedor, para confirmar que son correctas.",
+ atc_k3:"Fraseología estándar|Usar expresiones como “Wilco”, “Standby”, “Unable” o “Say again” evita malinterpretaciones.",
+ atc_k4:"Disciplina de radio|Escucha siempre antes de transmitir para no pisar otra transmisión. Usa el orden correcto: a quién llamas, quién eres, dónde estás y qué necesitas. Ejemplo: “Cancun Tower, N123AB, holding short Runway 12, ready for departure.”",
+ atc_k5:"Conciencia situacional|Una buena comunicación con ATC apoya el conocimiento del tráfico, la evasión del terreno y las actualizaciones meteorológicas.",
+ atc_outro:"En todas las fases del vuelo (tierra, salida, ruta y aproximación), una comunicación clara con ATC asegura la separación del tráfico y entrega información esencial para decidir. Ganar confianza en la radio requiere práctica, pero es una habilidad básica para volar de forma segura y profesional.",
+ ct_email_l:"Soporte por correo",ct_phone_l:"Hablemos",ct_send_h:"Envíanos un mensaje",ct_send_p:"¿Tienes preguntas o ideas? Escríbenos: estamos aquí para conectar y crear algo extraordinario juntos.",ph_phone:"Teléfono"
+});
+Object.assign(T.pt,{
+ n_about:"Sobre nós",ab_title:"Sobre nós",slogan:"Inovação, precisão e paixão: formamos pilotos para um futuro sem limites.",
+ pil:"Seja piloto|no comando|Atenda e supere os padrões da FAA",ab_found_h:"Fundada em 2024,",
+ ab_p1:"A eFlight School lançou em 2025 seu programa completo de formação teórica online. Desde o início, a escola se tornou referência no ensino de conhecimentos aeronáuticos, com preparação estruturada para a prova escrita de piloto privado da FAA e apoio aos requisitos gerais da certificação de piloto.",
+ ab_p2:"Na eFlight School, defendemos que a formação em solo é tão essencial quanto a de voo. Pilotos que dominam a teoria aeronáutica (aerodinâmica, navegação, meteorologia, regulamentos e sistemas da aeronave) evoluem com mais eficiência na cabine, reduzindo o tempo e o custo do treinamento.",
+ ab_b1:"Passar na prova escrita na primeira tentativa",ab_b2:"Fazer a transição para o treinamento de voo com confiança",
+ ab_p3:"Com um currículo alinhado à Parte 91 e a experiência de instrutores certificados, a eFlight School oferece o rigor acadêmico e a orientação profissional essenciais para os futuros pilotos de hoje.",
+ fq0:"O que torna a eFlight School diferente?",fa0:"Não ensinamos apenas a passar na prova: ensinamos até a proficiência. Muitos alunos decoram respostas, mas isso cria lacunas que depois precisam ser corrigidas no avião ($200–$300 por hora). Nosso programa tem o dobro do conteúdo de muitas alternativas, então você chega mais preparado ao treinamento de voo e ao exame prático. Isso economiza tempo e dinheiro.",
+ atc_intro:"A comunicação com o controle de tráfego aéreo (ATC) é uma das habilidades mais importantes da aviação. O uso eficaz do rádio garante segurança, eficiência e conformidade com as regras. Os pilotos devem usar a fraseologia padrão da ICAO ou da FAA, que reduz ambiguidades e facilita a compreensão rápida entre pilotos e controladores.",
+ atc_kh:"Os elementos-chave são:",
+ atc_k1:"Brevidade e clareza|Mantenha as transmissões curtas, profissionais e objetivas. Evite palavras desnecessárias.",
+ atc_k2:"Readbacks (confirmações)|Os pilotos devem repetir instruções críticas, como autorizações, proas, altitudes, pistas designadas e códigos de transponder, para confirmar a precisão.",
+ atc_k3:"Fraseologia padrão|Usar expressões como “Wilco”, “Standby”, “Unable” ou “Say again” evita interpretações erradas.",
+ atc_k4:"Disciplina de rádio|Sempre escute antes de transmitir para não sobrepor outra transmissão. Use a ordem correta: quem você chama, quem você é, onde está e o que deseja. Exemplo: “Cancun Tower, N123AB, holding short Runway 12, ready for departure.”",
+ atc_k5:"Consciência situacional|Uma boa comunicação com o ATC apoia a percepção do tráfego, o desvio de terreno e as atualizações meteorológicas.",
+ atc_outro:"Em todas as fases do voo (solo, saída, rota e aproximação), a comunicação clara com o ATC garante a separação do tráfego e fornece informações essenciais para a tomada de decisão. Ganhar confiança no rádio exige prática, mas é uma habilidade central para voar com segurança e profissionalismo.",
+ ct_email_l:"Suporte por e-mail",ct_phone_l:"Vamos conversar",ct_send_h:"Envie-nos uma mensagem",ct_send_p:"Tem dúvidas ou ideias? Fale com a gente: estamos aqui para conectar e criar algo incrível juntos.",ph_phone:"Telefone"
+});
+Object.assign(T.fr,{
+ n_about:"À propos",ab_title:"À propos",slogan:"Innovation, précision et passion : nous formons des pilotes pour un avenir sans limites.",
+ pil:"Devenez pilote|aux commandes|Respectez et dépassez les normes de la FAA",ab_found_h:"Fondée en 2024,",
+ ab_p1:"eFlight School a lancé en 2025 son programme complet de formation théorique en ligne. Depuis ses débuts, l'école est devenue une référence dans l'enseignement des connaissances aéronautiques, avec une préparation structurée à l'examen écrit de pilote privé de la FAA et un soutien aux exigences générales de la certification de pilote.",
+ ab_p2:"Chez eFlight School, nous affirmons que la formation au sol est aussi essentielle que la formation en vol. Les pilotes qui maîtrisent la théorie aéronautique (aérodynamique, navigation, météorologie, réglementation et systèmes de l'aéronef) progressent plus efficacement en cabine, ce qui réduit le temps et le coût de la formation.",
+ ab_b1:"Réussir l'examen écrit dès la première tentative",ab_b2:"Passer en confiance à la formation en vol",
+ ab_p3:"Grâce à un cursus aligné sur la Part 91 et à l'expertise d'instructeurs certifiés, eFlight School offre la rigueur académique et l'accompagnement professionnel essentiels aux futurs pilotes d'aujourd'hui.",
+ fq0:"Qu'est-ce qui distingue eFlight School ?",fa0:"Nous ne vous apprenons pas seulement à réussir l'examen : nous vous menons jusqu'à la maîtrise. Beaucoup d'élèves apprennent des réponses par cœur, ce qui crée des lacunes à combler plus tard en avion (200 à 300 $ de l'heure). Notre programme contient le double de contenu de nombreuses alternatives, pour une meilleure préparation à la formation en vol et à l'examen pratique. Vous gagnez du temps et de l'argent.",
+ atc_intro:"La communication avec le contrôle de la circulation aérienne (ATC) est l'une des compétences les plus importantes de l'aviation. Une bonne utilisation de la radio garantit sécurité, efficacité et conformité à la réglementation. Les pilotes doivent utiliser la phraséologie standard de l'OACI ou de la FAA, qui limite l'ambiguïté et facilite la compréhension entre pilotes et contrôleurs.",
+ atc_kh:"Les éléments clés :",
+ atc_k1:"Concision et clarté|Gardez des transmissions courtes, professionnelles et précises. Évitez les mots inutiles.",
+ atc_k2:"Collationnements (readbacks)|Les pilotes doivent répéter les instructions critiques (autorisations, caps, altitudes, pistes attribuées, codes transpondeur) pour confirmer leur exactitude.",
+ atc_k3:"Phraséologie standard|Des expressions comme « Wilco », « Standby », « Unable » ou « Say again » évitent les malentendus.",
+ atc_k4:"Discipline radio|Écoutez toujours avant d'émettre pour ne pas couper une autre transmission. Respectez l'ordre : qui vous appelez, qui vous êtes, où vous êtes et ce que vous voulez. Exemple : « Cancun Tower, N123AB, holding short Runway 12, ready for departure. »",
+ atc_k5:"Conscience de la situation|Une bonne communication avec l'ATC soutient la connaissance du trafic, l'évitement du relief et les mises à jour météo.",
+ atc_outro:"À toutes les phases du vol (sol, départ, route et approche), une communication claire avec l'ATC assure la séparation du trafic et fournit les informations essentielles à la décision. Prendre confiance à la radio demande de la pratique, mais c'est une compétence fondamentale pour voler de façon sûre et professionnelle.",
+ ct_email_l:"Assistance par e-mail",ct_phone_l:"Parlons-en",ct_send_h:"Envoyez-nous un message",ct_send_p:"Des questions ou des idées ? Écrivez-nous : nous sommes là pour échanger et créer quelque chose d'exceptionnel ensemble.",ph_phone:"Téléphone"
+});

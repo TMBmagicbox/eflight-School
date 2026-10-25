@@ -19,6 +19,7 @@ function shell(){
  <a href="index.html" class="logo"><img src="assets/img/logo-white.png" alt="eFlight School"></a>
  <nav id="nav"><ul>
   <li><a href="index.html" ${on("home")} data-i18n="n_home"></a></li>
+  <li><a href="about.html" ${on("about")} data-i18n="n_about"></a></li>
   <li class="has-sub"><a href="courses.html" ${on("courses")} data-i18n="n_courses"></a>
    <ul class="sub">
     <li><a href="courses.html" data-i18n="n_allc"></a></li>
@@ -41,8 +42,8 @@ function shell(){
   <button class="menu" onclick="$('nav').classList.toggle('open')">☰</button>
  </div></div></header>`;
  $("ftr").innerHTML=`<footer><div class="wrap"><div class="fg">
-  <div><div class="logo" style="margin-bottom:10px"><img src="assets/img/logo-white.png" alt="eFlight School"></div><p data-i18n="ft_desc"></p></div>
-  <div><h4 data-i18n="ft_explore"></h4><ul><li><a href="courses.html" data-i18n="n_courses"></a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" data-i18n="n_contact"></a></li></ul></div>
+  <div><div class="logo" style="margin-bottom:10px"><img src="assets/img/logo-white.png" alt="eFlight School"></div><p data-i18n="ft_desc"></p><p style="margin-top:10px">📞 +1 (786) 846 3505<br>✉️ info@eflightschool.com</p></div>
+  <div><h4 data-i18n="ft_explore"></h4><ul><li><a href="courses.html" data-i18n="n_courses"></a></li><li><a href="about.html" data-i18n="n_about"></a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" data-i18n="n_contact"></a></li></ul></div>
   <div><h4 data-i18n="ft_legal"></h4><ul><li data-i18n="terms"></li><li data-i18n="privacy"></li></ul></div>
  </div><div class="copy" data-i18n="copy"></div></div></footer>
  <div id="ov" onclick="toggleCart()"></div>
@@ -57,7 +58,7 @@ document.addEventListener("click",()=>{const l=$("langs");l&&l.classList.remove(
 function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
 function pageTitle(){
  if(PCAT)return t("p_"+PCAT+"_h")+" | eFlight School";
- return {home:t("title"),courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
+ return {home:t("title"),about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
 }
 function applyLang(){
  document.documentElement.lang=lang;
@@ -69,6 +70,7 @@ function applyLang(){
  renderCats();renderCatPage();buildFilters();
  document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=t(e.dataset.i18n));
  document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
+ const pl=$("pil");if(pl){const x=t("pil").split("|");pl.innerHTML=`<h2>${x[0]}</h2><h2>${x[1]}</h2><p>${x[2]}</p>`}
  render();drawCart();
 }
 
@@ -80,6 +82,7 @@ function renderCats(){
 }
 
 /* ---------- Página de categoría ---------- */
+function atcBlock(){return `<section style="background:#fff"><div class="wrap"><p style="max-width:820px;margin-bottom:26px">${t("atc_intro")}</p><h2 style="margin-bottom:16px">${t("atc_kh")}</h2><div class="grid4">${[1,2,3,4,5].map(i=>{const x=t("atc_k"+i).split("|");return `<div class="feat"><h3>${x[0]}</h3><p>${x[1]}</p></div>`}).join("")}</div><p style="margin-top:26px;color:var(--mut);max-width:820px">${t("atc_outro")}</p></div></section>`}
 function renderCatPage(){
  const main=$("main");if(!main||!PCAT)return;
  const k=PCAT,topics=t("p_"+k+"_topics").split("|");
@@ -90,6 +93,7 @@ function renderCatPage(){
   ${imgBox(k,"cimg big")}
   <div><h2>${t("learn_h")}</h2><ul class="topics">${topics.map(x=>`<li>${x}</li>`).join("")}</ul></div>
  </div></section>
+ ${k==="atc"?atcBlock():""}
  <section style="background:#fff"><div class="wrap"><div class="sh"><h2>${t("courses_in")}</h2></div><div class="courses" id="courses"></div></div></section>
  <section class="ctab"><div class="wrap"><h2>${t("cta_h")}</h2><p>${t("cta_p")}</p><a class="btn" href="courses.html">${t("n_allc")}</a></div></section>`;
 }
