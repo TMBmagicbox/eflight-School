@@ -16,7 +16,7 @@ const on=p=>PAGE===p||(p==="courses"&&PCAT)?"class='act'":"";
 /* ---------- Cabecera y pie ---------- */
 function shell(){
  $("hdr").innerHTML=`<header><div class="wrap nav">
- <a href="index.html" class="logo"><svg viewBox="0 0 24 24" fill="#ffb703"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>SkyLearn</a>
+ <a href="index.html" class="logo"><img src="assets/img/logo-white.png" alt="eFlight School"></a>
  <nav id="nav"><ul>
   <li><a href="index.html" ${on("home")} data-i18n="n_home"></a></li>
   <li class="has-sub"><a href="courses.html" ${on("courses")} data-i18n="n_courses"></a>
@@ -41,7 +41,7 @@ function shell(){
   <button class="menu" onclick="$('nav').classList.toggle('open')">☰</button>
  </div></div></header>`;
  $("ftr").innerHTML=`<footer><div class="wrap"><div class="fg">
-  <div><div class="logo" style="color:#fff;margin-bottom:10px">✈ SkyLearn</div><p data-i18n="ft_desc"></p></div>
+  <div><div class="logo" style="margin-bottom:10px"><img src="assets/img/logo-white.png" alt="eFlight School"></div><p data-i18n="ft_desc"></p></div>
   <div><h4 data-i18n="ft_explore"></h4><ul><li><a href="courses.html" data-i18n="n_courses"></a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" data-i18n="n_contact"></a></li></ul></div>
   <div><h4 data-i18n="ft_legal"></h4><ul><li data-i18n="terms"></li><li data-i18n="privacy"></li></ul></div>
  </div><div class="copy" data-i18n="copy"></div></div></footer>
@@ -56,8 +56,8 @@ function toggleLang(){$("langs").classList.toggle("open")}
 document.addEventListener("click",()=>{const l=$("langs");l&&l.classList.remove("open")});
 function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
 function pageTitle(){
- if(PCAT)return t("p_"+PCAT+"_h")+" | SkyLearn";
- return {home:t("title"),courses:t("cat_h")+" | SkyLearn",faq:t("faq_h")+" | SkyLearn",contact:t("ct_h")+" | SkyLearn"}[PAGE]||t("title");
+ if(PCAT)return t("p_"+PCAT+"_h")+" | eFlight School";
+ return {home:t("title"),courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
 }
 function applyLang(){
  document.documentElement.lang=lang;

@@ -149,3 +149,7 @@ nav a.act{color:var(--amber)}
  .sub a:hover{background:none;color:var(--amber)}
  .has-sub>a:after{content:""}
 }
+.logo img{height:42px;width:auto;display:block}
+.partners{padding:26px 0;background:#fff;border-bottom:1px solid #e3eaf4}
+.partners .wrap{display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap}
+.partners img{height:64px;width:auto}

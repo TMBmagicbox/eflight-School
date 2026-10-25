@@ -1,4 +1,4 @@
-# SkyLearn – Aviation courses
+# eFlight School – Aviation courses
 
 Páginas: `index.html`, `courses.html`, `atc.html`, `private-pilot.html`, `instrument.html`, `commercial.html`, `faq.html`, `contact.html`.
 
