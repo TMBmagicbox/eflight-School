@@ -2,6 +2,7 @@
 const B=document.body.dataset,PAGE=B.page,PCAT=B.cat||null;
 const KEYS=["all","atc","private","instrument","commercial"];
 const PAGES={atc:"atc.html",private:"private-pilot.html",instrument:"instrument.html",commercial:"commercial.html"};
+const IMG_MAP={atc:"atc.jpg",private:"private.jpg",instrument:"instruments.jpg",commercial:"comercial.jpg"};
 const ICONS={
   atc:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l4 2"/><circle cx="12" cy="12" r="2"/></svg>',
   private:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>',
@@ -81,7 +82,7 @@ function applyLang(){
 }
 
 /* ---------- Tarjetas de categorías (inicio) ---------- */
-function imgBox(k,cls){return `<div class="${cls}" style="background:linear-gradient(135deg,${GR[k]})"><span class="ph">${ICONS[k]||""}</span><img src="assets/img/${k}.jpg" alt="${t('p_'+k+'_h')}" onerror="this.remove()"></div>`}
+function imgBox(k,cls){return `<div class="${cls}" style="background:linear-gradient(135deg,${GR[k]})"><span class="ph">${ICONS[k]||""}</span><img src="assets/img/${IMG_MAP[k]||k+'.jpg'}" alt="${t('p_'+k+'_h')}" onerror="this.remove()"></div>`}
 function renderCats(){
  const box=$("catcards");if(!box)return;
  box.innerHTML=["atc","private","instrument","commercial"].map(k=>`<a class="ccard" href="${PAGES[k]}">${imgBox(k,"cimg")}<div class="cbody"><h3>${t("p_"+k+"_h")}</h3><p>${t("p_"+k+"_d")}</p><span class="more">${t("cat_view")} →</span></div></a>`).join("");
