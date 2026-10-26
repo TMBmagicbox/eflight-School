@@ -3,6 +3,12 @@ const B=document.body.dataset,PAGE=B.page,PCAT=B.cat||null;
 const KEYS=["all","atc","private","instrument","commercial"];
 const PAGES={atc:"atc.html",private:"private-pilot.html",instrument:"instrument.html",commercial:"commercial.html"};
 const IMG_MAP={atc:"atc.jpg",private:"private.jpg",instrument:"instruments.jpg",commercial:"comercial.jpg"};
+const SLIDER_IMGS={
+  atc:["atc.jpg","atc2.jpg"],
+  private:["private.jpg","private2.jpg"],
+  instrument:["instruments.jpg","instruments2.jpg"],
+  commercial:["comercial.jpg","comercial2.jpg"]
+};
 const ICONS={
   atc:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l4 2"/><circle cx="12" cy="12" r="2"/></svg>',
   private:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>',
@@ -79,6 +85,7 @@ function applyLang(){
  const pl=$("pil");if(pl){const x=t("pil").split("|");pl.innerHTML=`<h2>${x[0]}</h2><h2>${x[1]}</h2><p>${x[2]}</p>`}
  render();drawCart();
  if(window.onLang)onLang();
+ if(PCAT) initCatSlider();
 }
 
 /* ---------- Tarjetas de categorías (inicio) ---------- */
@@ -93,9 +100,16 @@ function atcBlock(){return `<section style="background:#fff"><div class="wrap"><
 function renderCatPage(){
  const main=$("main");if(!main||!PCAT)return;
  const k=PCAT,topics=t("p_"+k+"_topics").split("|");
- main.innerHTML=`<section class="phero"><div class="wrap">
-  <div class="bc"><a href="index.html">${t("n_home")}</a> › <a href="courses.html">${t("n_courses")}</a> › ${t("p_"+k+"_h")}</div>
-  <h1>${t("p_"+k+"_h")}</h1><p>${t("p_"+k+"_d")}</p></div></section>
+ const slides=(SLIDER_IMGS[k]||[IMG_MAP[k]]).map((img,i)=>`<div class="slide ${i===0?'active':''}" style="background-image:url('assets/img/${img}')"></div>`).join('');
+ main.innerHTML=`<section class="hero-slider cat-slider">
+  <div class="slides">${slides}</div>
+  <div class="wrap hero-content">
+   <div class="bc"><a href="index.html">${t("n_home")}</a> › <a href="courses.html">${t("n_courses")}</a> › ${t("p_"+k+"_h")}</div>
+   <h1>${t("p_"+k+"_h")}</h1>
+   <p>${t("p_"+k+"_d")}</p>
+  </div>
+  <div class="slider-dots">${(SLIDER_IMGS[k]||[1]).map((_,i)=>`<span class="dot ${i===0?'active':''}" data-slide="${i}"></span>`).join('')}</div>
+ </section>
  <section><div class="wrap two">
   ${imgBox(k,"cimg big")}
   <div><h2>${t("learn_h")}</h2><ul class="topics">${topics.map(x=>`<li>${x}</li>`).join("")}</ul></div>
@@ -103,6 +117,18 @@ function renderCatPage(){
  ${k==="atc"?atcBlock():""}
  <section style="background:#fff"><div class="wrap"><div class="sh"><h2>${t("courses_in")}</h2></div><div class="courses" id="courses"></div></div></section>
  <section class="ctab"><div class="wrap"><h2>${t("cta_h")}</h2><p>${t("cta_p")}</p><a class="btn" href="courses.html">${t("n_allc")}</a></div></section>`;
+}
+
+function initCatSlider(){
+ const slides=document.querySelectorAll('.cat-slider .slide');
+ const dots=document.querySelectorAll('.cat-slider .dot');
+ if(!slides.length) return;
+ let current=0, timer;
+ function goTo(n){slides[current].classList.remove('active');dots[current].classList.remove('active');current=n;slides[current].classList.add('active');dots[current].classList.add('active');}
+ function next(){goTo((current+1)%slides.length);}
+ function start(){timer=setInterval(next,6000);}
+ dots.forEach(d=>d.addEventListener('click',()=>{goTo(+d.dataset.slide);clearInterval(timer);start();}));
+ start();
 }
 
 /* ---------- Catálogo ---------- */
