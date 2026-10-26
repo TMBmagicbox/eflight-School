@@ -58,7 +58,7 @@ document.addEventListener("click",()=>{const l=$("langs");l&&l.classList.remove(
 function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
 function pageTitle(){
  if(PCAT)return t("p_"+PCAT+"_h")+" | eFlight School";
- return {home:t("title"),about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
+ return {home:t("title"),checkout:t("co_h")+" | eFlight School",about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
 }
 function applyLang(){
  document.documentElement.lang=lang;
@@ -72,6 +72,7 @@ function applyLang(){
  document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
  const pl=$("pil");if(pl){const x=t("pil").split("|");pl.innerHTML=`<h2>${x[0]}</h2><h2>${x[1]}</h2><p>${x[2]}</p>`}
  render();drawCart();
+ if(window.onLang)onLang();
 }
 
 /* ---------- Tarjetas de categorías (inicio) ---------- */
@@ -127,7 +128,7 @@ function drawCart(){
  $("total").textContent="$"+list.reduce((s,c)=>s+c.p,0);
 }
 function toggleCart(){$("drawer").classList.toggle("open");$("ov").classList.toggle("on")}
-function checkout(){if(!cart.length)return toast(t("toast_empty"));toast(t("toast_demo"))}
+function checkout(){if(!cart.length)return toast(t("toast_empty"));location.href="checkout.html"}
 function toast(m){const e=$("toast");e.textContent=m;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),2200)}
 
 shell();applyLang();
