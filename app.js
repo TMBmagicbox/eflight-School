@@ -2,7 +2,12 @@
 const B=document.body.dataset,PAGE=B.page,PCAT=B.cat||null;
 const KEYS=["all","atc","private","instrument","commercial"];
 const PAGES={atc:"atc.html",private:"private-pilot.html",instrument:"instrument.html",commercial:"commercial.html"};
-const EMO={atc:"🎧",private:"🛩️",instrument:"🎛️",commercial:"🛫"};
+const ICONS={
+  atc:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l4 2"/><circle cx="12" cy="12" r="2"/></svg>',
+  private:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>',
+  instrument:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 7v2M12 15v2M7 12h2M15 12h2"/></svg>',
+  commercial:'<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20M12 2v20"/><path d="M4 6l8-4 8 4"/></svg>'
+};
 const GR={atc:"#2ea3f2,#12305f",private:"#00b894,#0b3d5e",instrument:"#e17055,#2d3436",commercial:"#d63031,#0b1d3a"};
 const FL={es:"es",en:"us",pt:"br",fr:"fr"};
 const SUP=Object.keys(T);
@@ -38,11 +43,11 @@ function shell(){
     <li data-l="fr" onclick="setLang('fr')"><img src="https://flagcdn.com/w40/fr.png" alt="">Français</li>
    </ul>
   </div>
-  <button class="cartbtn" onclick="toggleCart()" aria-label="Cart">🛒<b id="cnt">0</b></button>
+  <button class="cartbtn" onclick="toggleCart()" aria-label="Cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><b id="cnt">0</b></button>
   <button class="menu" onclick="$('nav').classList.toggle('open')">☰</button>
  </div></div></header>`;
  $("ftr").innerHTML=`<footer><div class="wrap"><div class="fg">
-  <div><div class="logo" style="margin-bottom:10px"><img src="assets/img/logo-white.png" alt="eFlight School"></div><p data-i18n="ft_desc"></p><p style="margin-top:10px">📞 +1 (786) 846 3505<br>✉️ info@eflightschool.com</p></div>
+  <div><div class="logo" style="margin-bottom:10px"><img src="assets/img/logo-white.png" alt="eFlight School"></div><p data-i18n="ft_desc"></p><p style="margin-top:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +1 (786) 846 3505<br><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> info@eflightschool.com</p></div>
   <div><h4 data-i18n="ft_explore"></h4><ul><li><a href="courses.html" data-i18n="n_courses"></a></li><li><a href="about.html" data-i18n="n_about"></a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html" data-i18n="n_contact"></a></li></ul></div>
   <div><h4 data-i18n="ft_legal"></h4><ul><li data-i18n="terms"></li><li data-i18n="privacy"></li></ul></div>
  </div><div class="copy" data-i18n="copy"></div></div></footer>
@@ -76,7 +81,7 @@ function applyLang(){
 }
 
 /* ---------- Tarjetas de categorías (inicio) ---------- */
-function imgBox(k,cls){return `<div class="${cls}" style="background:linear-gradient(135deg,${GR[k]})"><span class="ph">${EMO[k]}</span><img src="assets/img/${k}.jpg" alt="${t('p_'+k+'_h')}" onerror="this.remove()"></div>`}
+function imgBox(k,cls){return `<div class="${cls}" style="background:linear-gradient(135deg,${GR[k]})"><span class="ph">${ICONS[k]||""}</span><img src="assets/img/${k}.jpg" alt="${t('p_'+k+'_h')}" onerror="this.remove()"></div>`}
 function renderCats(){
  const box=$("catcards");if(!box)return;
  box.innerHTML=["atc","private","instrument","commercial"].map(k=>`<a class="ccard" href="${PAGES[k]}">${imgBox(k,"cimg")}<div class="cbody"><h3>${t("p_"+k+"_h")}</h3><p>${t("p_"+k+"_d")}</p><span class="more">${t("cat_view")} →</span></div></a>`).join("");
@@ -110,7 +115,7 @@ function render(){
  const qe=$("q"),q=qe?qe.value.toLowerCase():"";
  const list=COURSES.filter(c=>(cat==="all"||c.k===cat)&&c.t[lang].toLowerCase().includes(q));
  box.innerHTML=list.map(c=>`
- <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span>${c.e}</div>
+ <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span>${ICONS[c.k]||""}</div>
  <div class="cb"><small style="color:var(--sky);font-weight:700">${t('c_'+c.k)}</small><h3>${c.t[lang]}</h3>
  <div class="meta"><span>⏱ ${c.h} h</span><span>🎬 ${c.n} ${t('lessons')}</span></div>
  <div class="stars">${"★".repeat(Math.round(c.r))} <span style="color:var(--mut)">${c.r}</span></div>
@@ -124,7 +129,7 @@ function rm(id){cart=cart.filter(i=>i!==id);save()}
 function drawCart(){
  $("cnt").textContent=cart.length;
  const list=cart.map(i=>COURSES.find(c=>c.id===i));
- $("items").innerHTML=list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${c.e}</div><div><b>${c.t[lang]}</b><br>$${c.p}</div><button onclick="rm(${c.id})">🗑</button></div>`).join("")||`<p style='color:var(--mut);padding:20px 0'>${t('empty')}</p>`;
+ $("items").innerHTML=list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${ICONS[c.k]||""}</div><div><b>${c.t[lang]}</b><br>$${c.p}</div><button onclick="rm(${c.id})">🗑</button></div>`).join("")||`<p style='color:var(--mut);padding:20px 0'>${t('empty')}</p>`;
  $("total").textContent="$"+list.reduce((s,c)=>s+c.p,0);
 }
 function toggleCart(){$("drawer").classList.toggle("open");$("ov").classList.toggle("on")}
