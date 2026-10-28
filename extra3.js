@@ -1,6 +1,6 @@
 /* Contenido del Home de eFlight School (sobrescribe textos anteriores) */
 Object.assign(T.en,{
- tag:"✈ Private School",h1:"Online <span>Ground School</span>",hero_p:"Take the first step toward your aviation dreams with our FAA Private Pilot Online Ground School.",
+ tag:"Private School",h1:"Online <span>Ground School</span>",hero_p:"Take the first step toward your aviation dreams with our FAA Private Pilot Online Ground School.",
  watch:"Watch Video",bd1:"Study anytime, anywhere",bd2:"Practice exams with explanations",bd3:"FAA instructor endorsement included",
  rd_s:"Ready to become a pilot?",rd_h:"Take the first step toward your aviation dreams with our FAA Private Pilot Online Ground School.",
  rd_p:"Our course gives you everything you need to pass the FAA Private Pilot Knowledge Test on your first try—including the FAA-required instructor endorsement. Study anytime, anywhere, and get fully prepared to ace your exam and start flying.",
@@ -15,7 +15,7 @@ Object.assign(T.en,{
  ft_desc:"Why just watch planes when you could be flying one? At eFlight School's Online Ground School, you'll dive into ATC communication, navigation, flight planning, weather, and more — everything you need to launch your pilot career."
 });
 Object.assign(T.es,{
- tag:"✈ Escuela privada",h1:"Ground School <span>en línea</span>",hero_p:"Da el primer paso hacia tus sueños de aviación con nuestro Ground School en línea para piloto privado FAA.",
+ tag:"Escuela privada",h1:"Ground School <span>en línea</span>",hero_p:"Da el primer paso hacia tus sueños de aviación con nuestro Ground School en línea para piloto privado FAA.",
  watch:"Ver video",bd1:"Estudia cuando y donde quieras",bd2:"Simulacros con explicaciones",bd3:"Incluye endoso del instructor FAA",
  rd_s:"¿Listo para ser piloto?",rd_h:"Da el primer paso hacia tus sueños de aviación con nuestro Ground School en línea para piloto privado FAA.",
  rd_p:"Nuestro curso te da todo lo necesario para aprobar el examen de conocimientos de piloto privado de la FAA a la primera, incluido el endoso del instructor que exige la FAA. Estudia cuando y donde quieras y prepárate por completo para aprobar tu examen y empezar a volar.",
@@ -30,7 +30,7 @@ Object.assign(T.es,{
  ft_desc:"¿Por qué solo mirar aviones si puedes volar uno? En el Ground School en línea de eFlight School te sumergirás en comunicación ATC, navegación, planificación de vuelo, meteorología y más: todo lo que necesitas para lanzar tu carrera de piloto."
 });
 Object.assign(T.pt,{
- tag:"✈ Escola privada",h1:"Ground School <span>online</span>",hero_p:"Dê o primeiro passo rumo aos seus sonhos na aviação com nosso Ground School online para piloto privado FAA.",
+ tag:"Escola privada",h1:"Ground School <span>online</span>",hero_p:"Dê o primeiro passo rumo aos seus sonhos na aviação com nosso Ground School online para piloto privado FAA.",
  watch:"Assistir ao vídeo",bd1:"Estude quando e onde quiser",bd2:"Simulados com explicações",bd3:"Endosso do instrutor FAA incluído",
  rd_s:"Pronto para ser piloto?",rd_h:"Dê o primeiro passo rumo aos seus sonhos na aviação com nosso Ground School online para piloto privado FAA.",
  rd_p:"Nosso curso oferece tudo o que você precisa para passar na prova de conhecimentos de piloto privado da FAA de primeira, incluindo o endosso do instrutor exigido pela FAA. Estude quando e onde quiser e prepare-se por completo para passar na prova e começar a voar.",
@@ -45,7 +45,7 @@ Object.assign(T.pt,{
  ft_desc:"Por que só ver aviões se você pode pilotar um? No Ground School online da eFlight School, você mergulha em comunicação ATC, navegação, planejamento de voo, meteorologia e mais: tudo para lançar sua carreira de piloto."
 });
 Object.assign(T.fr,{
- tag:"✈ École privée",h1:"Ground School <span>en ligne</span>",hero_p:"Faites le premier pas vers vos rêves d'aviation avec notre Ground School en ligne pour pilote privé FAA.",
+ tag:"École privée",h1:"Ground School <span>en ligne</span>",hero_p:"Faites le premier pas vers vos rêves d'aviation avec notre Ground School en ligne pour pilote privé FAA.",
  watch:"Voir la vidéo",bd1:"Étudiez où et quand vous voulez",bd2:"Examens blancs avec explications",bd3:"Endossement de l'instructeur FAA inclus",
  rd_s:"Prêt à devenir pilote ?",rd_h:"Faites le premier pas vers vos rêves d'aviation avec notre Ground School en ligne pour pilote privé FAA.",
  rd_p:"Notre cours vous donne tout ce qu'il faut pour réussir l'examen de connaissances de pilote privé de la FAA du premier coup, y compris l'endossement de l'instructeur exigé par la FAA. Étudiez où et quand vous voulez et préparez-vous pleinement à réussir votre examen et à voler.",
