@@ -1,4 +1,4 @@
-function poster(c){return "assets/img/"+(IMG_MAP[c.k]||"hero1.jpg")}
+function poster(c){return coursePoster(c)}
 function renderMy(){
  const root=$("app");if(!root)return;
  const u=EFSStore.user();

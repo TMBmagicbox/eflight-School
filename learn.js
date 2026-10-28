@@ -1,7 +1,7 @@
 /* Course player: video, syllabus, notes, comments, completion. */
 let lessonId=null, player, pane="com";
 function cid(){return +new URLSearchParams(location.search).get("id")||1}
-function poster(c){return "assets/img/"+(IMG_MAP[c.k]||"hero1.jpg")}
+function poster(c){return coursePoster(c)}
 function current(syl){return syl.lessons.find(l=>l.id===lessonId)||syl.lessons[0]}
 function go(id){lessonId=id;const u=new URL(location.href);u.searchParams.set("lesson",id);history.replaceState(null,"",u);if(EFSStore.user())EFSStore.setLast(cid(),id);renderLearn()}
 function renderLearn(){
@@ -18,7 +18,6 @@ function renderLearn(){
  root.innerHTML=`<div class="player">
   <div><div id="stage" class="trailer" style="border-radius:0"></div>
    <div class="pbody">
-    <p class="phbanner">${t("dk_ph")}</p>
     <h1 style="font-size:1.4rem">${esc(lesson.title)}</h1>
     <p>${esc(c.t[lang])} · ${fmtMin(lesson.min)} · ${st.pct}% </p>
     <div class="progbar" style="margin:8px 0 14px"><i style="width:${st.pct}%"></i></div>

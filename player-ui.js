@@ -12,7 +12,7 @@ function mountPlayer(root, opts){
  root.innerHTML=`<div class="stagev phv">
   <img alt="" src="${esc(opts.poster||"")}">
   <button type="button" class="bigplay" aria-label="${esc(opts.playLabel||"Play")}">${ico('<polygon points="6 3 20 12 6 21 6 3"/>',28,true)}</button>
-  <p class="phlabel">${esc(t("dk_ph"))}</p>
+  <p class="phlabel">${esc(t("dk_ph_short"))}</p>
   <div class="vbar"><i></i><span class="vt">0:00</span><b>${esc(opts.title||"")}</b><span class="vr"></span></div>
  </div>`;
  const bar=root.querySelector(".vbar i"), el=root.querySelector(".vt"), rem=root.querySelector(".vr"), btn=root.querySelector(".bigplay");

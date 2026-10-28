@@ -58,7 +58,11 @@ section{padding:80px 0}
 .course{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 6px 24px rgba(11,29,58,.08);display:flex;flex-direction:column;transition:.25s}
 .course:hover{transform:translateY(-6px)}
 .thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;position:relative;color:#fff}
-.lvl{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.4);font-size:.72rem;padding:2px 12px;border-radius:999px}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.lvl{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.4);font-size:.72rem;padding:2px 12px;border-radius:999px;z-index:2}
+.only-m{display:none}
+.only-d{color:#fff;font-weight:600;font-size:.85rem;max-width:11rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.only-d:hover{color:var(--amber)}
 .cb{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1}
 .cb h3{font-size:1.02rem;line-height:1.35}
 .meta{font-size:.8rem;color:var(--mut);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
@@ -111,6 +115,8 @@ footer li{list-style:none;padding:3px 0}
  nav.open{display:block}
  nav ul{flex-direction:column;gap:14px}
  .menu{display:block}
+ .only-m{display:list-item}
+ .only-d{display:none}
  .plan.hot{transform:none}
 }
 /* ---- Páginas por categoría ---- */

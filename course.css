@@ -59,6 +59,10 @@
 .avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
 .rev p{margin:4px 0;white-space:pre-wrap}
 .likebtn,.textbtn{background:none;border:0;font:inherit;cursor:pointer;color:var(--sky);font-weight:600}
+.coform label{display:flex;align-items:center;gap:8px;width:max-content}
+.filepick{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:8px;border:1px solid #d5dfee;border-radius:999px;padding:8px 14px;font-size:.85rem;font-weight:600;cursor:pointer;width:max-content}
+.filepick input{position:absolute;width:1px;height:1px;opacity:0}
+.filepick:after{content:attr(data-n);font-weight:400;color:var(--mut)}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .gcard{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(11,29,58,.06)}
 .gcard .phg{height:120px;background:linear-gradient(135deg,var(--navy),var(--sky))}

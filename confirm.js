@@ -2,7 +2,7 @@
 let method="card", code="";
 function cid(){return +new URLSearchParams(location.search).get("id")}
 function gift(){return new URLSearchParams(location.search).get("gift")==="1"}
-function poster(c){return "assets/img/"+(IMG_MAP[c.k]||"hero1.jpg")}
+function poster(c){return coursePoster(c)}
 function renderConfirm(){
  const c=courseById(cid());const root=$("app");if(!c||!root){if(root)root.innerHTML=`<div class="wrap" style="padding:40px 0"><p>${t("none")}</p></div>`;return}
  const u=EFSStore.user();const priced=EFSStore.price(c,code);const own=EFSStore.owns(c.id)&&!gift();

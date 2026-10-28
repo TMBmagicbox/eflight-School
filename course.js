@@ -1,7 +1,7 @@
 /* Domestika-style landing for one catalog course. */
 let tab="info", trailer;
 function cid(){return +new URLSearchParams(location.search).get("id")||1}
-function poster(c){return "assets/img/"+(IMG_MAP[c.k]||"hero1.jpg")}
+function poster(c){return coursePoster(c)}
 function when(ts){const d=Date.now()-ts;const m=Math.round(d/60000);if(m<60)return m+" min";const h=Math.round(m/60);if(h<48)return h+" h";return Math.round(h/24)+" d"}
 
 function buyBox(c, syl){
@@ -44,14 +44,14 @@ function reviewsBlock(c){
   <label><input type="radio" name="pos" value="0"> ${t("dk_neg")}</label>
   <textarea name="text" required rows="3" placeholder="${esc(t("dk_your_review"))}"></textarea>
   <button class="btn s">${t("dk_send")}</button></form>`:`<p><a href="account.html?next=${encodeURIComponent("course.html?id="+c.id)}">${t("login")}</a></p>`;
- const items=list.map(r=>`<article class="rev"><div class="avatar">${esc(r.name.slice(0,1).toUpperCase())}</div><div><b>${esc(r.name)}</b> <small>${r.positive?"👍":"👎"} · ${when(r.at)}</small><p>${esc(r.text)}</p><button class="likebtn" onclick="EFSStore.likeReview('${r.id}');renderCourse()">${t("pl_like")} ${r.likes.length}</button></div></article>`).join("");
- return `<h2>${t("dk_reviews")}</h2><p class="phbanner">${t("dk_no_reviews")}</p>${form}${items||""}`;
+ const items=list.map(r=>`<article class="rev"><div class="avatar">${esc(r.name.slice(0,1).toUpperCase())}</div><div><b>${esc(r.name)}</b> <small>${ico(r.positive?PATH.up:PATH.down,14)} · ${when(r.at)}</small><p>${esc(r.text)}</p><button class="likebtn" onclick="EFSStore.likeReview('${r.id}');renderCourse()">${t("pl_like")} ${r.likes.length}</button></div></article>`).join("");
+ return `<h2>${t("dk_reviews")}</h2>${list.length?"":`<p class="phbanner">${t("dk_no_reviews")}</p>`}${form}${items}`;
 }
 function postReview(ev,id){ev.preventDefault();const fd=new FormData(ev.target);const r=EFSStore.addReview(id,fd.get("pos")==="1",fd.get("text"));if(!r.ok)toast(t("acc_exists"));renderCourse();return false}
 function projectsBlock(c){
  const list=EFSStore.projects(c.id);
  const cards=list.map(p=>`<article class="gcard">${p.image?`<img src="${p.image}" alt="">`:`<div class="phg"></div>`}<p><b>${esc(p.title)}</b><br>${esc(p.name)}</p></article>`).join("");
- const form=EFSStore.user()?`<form onsubmit="return postProject(event,${c.id})" style="margin-top:12px"><input name="title" required placeholder="${esc(t("dk_proj_title"))}"><input name="file" type="file" accept="image/*"><button class="btn s" style="margin-top:8px">${t("dk_add_proj")}</button></form>`:"";
+ const form=EFSStore.user()?`<form onsubmit="return postProject(event,${c.id})" style="margin-top:12px"><input name="title" required placeholder="${esc(t("dk_proj_title"))}"><label class="filepick">${t("dk_choose")}<input name="file" type="file" accept="image/*" onchange="this.parentNode.dataset.n=this.files[0]?this.files[0].name:''"></label><button class="btn s" style="margin-top:8px">${t("dk_add_proj")}</button></form>`:"";
  return `<h2>${t("dk_stu")}</h2><p>${t("dk_empty_proj")}</p><div class="gallery">${cards}</div>${form}`;
 }
 function postProject(ev,id){

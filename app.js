@@ -3,6 +3,8 @@ const B=document.body.dataset,PAGE=B.page,PCAT=B.cat||null;
 const KEYS=["all","atc","private","instrument","commercial"];
 const PAGES={atc:"atc.html",private:"private-pilot.html",instrument:"instrument.html",commercial:"commercial.html"};
 const IMG_MAP={atc:"atc.jpg",private:"private.jpg",instrument:"instruments.jpg",commercial:"comercial.jpg"};
+const COURSE_IMG={1:"c1.jpg",2:"c2.jpg",3:"private.jpg",4:"hero2.jpg",5:"c5.jpg",6:"c6.jpg",7:"instruments.jpg",8:"instruments2.jpg",9:"comercial.jpg",10:"c10.jpg",11:"comercial2.jpg",12:"flex.jpg"};
+function coursePoster(c){return "assets/img/"+(COURSE_IMG[c.id]||IMG_MAP[c.k]||"hero1.jpg")}
 const SLIDER_IMGS={
   atc:["atc.jpg","atc2.jpg"],
   private:["private.jpg","private2.jpg"],
@@ -37,7 +39,9 @@ chevR:'<path d="m9 18 6-6-6-6"/>',
  card:'<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
  bank:'<rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
  alert:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
- lock:'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
+ lock:'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+ up:'<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>',
+ down:'<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>'
 };
 function courseIcon(key,size=22){return ico(PATH[key]||PATH.plane,size)}
 function catIcon(k,size=48){return ico({atc:PATH.radio,private:PATH.plane,instrument:PATH.gauge,commercial:PATH.takeoff}[k]||PATH.plane,size)}
@@ -65,10 +69,12 @@ function shell(){
    </ul></li>
   <li><a href="faq.html" ${on("faq")} data-i18n="n_faq"></a></li>
   <li><a href="contact.html" ${on("contact")} data-i18n="n_contact"></a></li>
-  <li><a href="my-courses.html" ${on("mycourses")} data-i18n="my_h"></a></li>
-  <li><a href="account.html" id="acct" ${on("account")} data-i18n="login"></a></li>
+  <li class="only-m"><a href="my-courses.html" ${on("mycourses")} data-i18n="my_h"></a></li>
+  <li class="only-m"><a href="account.html" class="acct-link" ${on("account")} data-i18n="login"></a></li>
  </ul></nav>
  <div style="display:flex;gap:14px;align-items:center">
+  <a href="my-courses.html" class="only-d" data-i18n="my_h"></a>
+  <a href="account.html" class="only-d acct-link" data-i18n="login"></a>
   <div class="langs" id="langs">
    <button class="lcur" onclick="event.stopPropagation();toggleLang()" aria-label="Language"><img id="curflag" src="https://flagcdn.com/w40/es.png" alt=""><span class="arr">${ico(PATH.chev,14)}</span></button>
    <ul class="lmenu" id="lmenu">
@@ -113,8 +119,10 @@ function applyLang(){
  document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
  const pl=$("pil");if(pl){const x=t("pil").split("|");pl.innerHTML=`<h2>${x[0]}</h2><h2>${x[1]}</h2><p>${x[2]}</p>`}
  render();drawCart();
- const acct=$("acct");
- if(acct&&window.EFSStore){const u=EFSStore.user();if(u){acct.textContent=u.name.split(" ")[0];acct.removeAttribute("data-i18n")}else{acct.dataset.i18n="login";acct.textContent=t("login")}}
+ if(window.EFSStore){const u=EFSStore.user();document.querySelectorAll("a.acct-link, a.only-d[href='account.html']").forEach(a=>{
+  if(u){a.textContent=u.name;a.title=u.name;a.removeAttribute("data-i18n")}
+  else{a.dataset.i18n="login";a.textContent=t("login");a.removeAttribute("title")}
+ })}
  if(window.onLang)onLang();
  if(PCAT) initCatSlider();
 }
@@ -173,7 +181,7 @@ function render(){
  const qe=$("q"),q=qe?qe.value.toLowerCase():"";
  const list=COURSES.filter(c=>(cat==="all"||c.k===cat)&&c.t[lang].toLowerCase().includes(q));
  box.innerHTML=list.map(c=>`
- <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span>${courseIcon(c.e,42)}</div>
+ <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span><span class="ph">${courseIcon(c.e,42)}</span><img src="${coursePoster(c)}" alt="" onerror="this.remove()"></div>
  <div class="cb"><small style="color:var(--sky);font-weight:700">${t('c_'+c.k)}</small><h3><a href="course.html?id=${c.id}">${c.t[lang]}</a></h3>
  <div class="meta"><span>${ico(PATH.clock,14)} ${c.h} h</span><span>${ico(PATH.film,14)} ${c.n} ${t('lessons')}</span></div>
  <div class="stars">${stars(Math.round(c.r))} <span style="color:var(--mut)">${c.r}</span></div>
