@@ -1,0 +1,71 @@
+Photographic assets added for the course, hero, and study sections.
+Logos already in this folder (logo.png, logo-white.png, faa.webp, aopa.png) are unchanged.
+
+All Pexels photos are free to use under the Pexels License
+(https://www.pexels.com/license/): commercial and non-commercial use on a website,
+no attribution required. They are not sold as standalone images.
+
+All Unsplash photos are free to use under the Unsplash License
+(https://unsplash.com/license/): commercial and non-commercial use, no attribution required.
+
+atc.jpg
+  Control tower, Arlanda Airport.
+  Photographer: Ludvig Hedenborg
+  https://www.pexels.com/photo/air-traffic-control-tower-of-arlanda-airport-7899923/
+  License: Pexels License
+
+atc2.jpg
+  Airport traffic control tower.
+  Photographer: Malte Luk
+  https://www.pexels.com/photo/airport-traffic-control-tower-near-the-fence-3307415/
+  License: Pexels License
+
+private.jpg
+  Light training aircraft on a runway.
+  Photographer: Natã Romualdo
+  https://www.pexels.com/photo/cessna-plane-parked-on-a-ramp-6308947/
+  License: Pexels License
+
+private2.jpg and hero1.jpg
+  Cessna 172 on a mountain airstrip.
+  Photographer: Rachel Claire
+  https://www.pexels.com/photo/a-cessna-172-7276734/
+  License: Pexels License
+
+instruments.jpg
+  Cessna 150 instrument panel.
+  Photographer: Daniel Torobekov
+  https://www.pexels.com/photo/dashboard-of-aircraft-parked-on-airfield-5262805/
+  License: Pexels License
+
+instruments2.jpg
+  Airliner instrument panel (glass cockpit).
+  Photographer: Mariya Eskina
+  https://www.pexels.com/photo/commercial-airplane-cockpit-with-instrument-panels-36569342/
+  License: Pexels License
+
+comercial.jpg
+  Two pilots in an airliner cockpit.
+  Photographer: Rafael Cosquiere
+  https://www.pexels.com/photo/two-pilots-sitting-inside-plane-2064123/
+  License: Pexels License
+
+comercial2.jpg
+  Two pilots flying an airplane.
+  Photographer: Pexels contributor
+  https://www.pexels.com/photo/two-pilots-flying-an-airplane-2898316/
+  License: Pexels License
+
+hero2.jpg and hero.jpg
+  Airliner wing above the clouds.
+  Photographer: Ross Parmly
+  https://unsplash.com/photos/aerial-photography-of-airliner-rf6ywHVkrlY
+  License: Unsplash License
+
+flex.jpg
+  Student studying with a laptop and books.
+  Photographer: Yan Krukau
+  https://www.pexels.com/photo/brunette-woman-sitting-at-table-with-laptop-in-library-8199258/
+  License: Pexels License
+
+Flat icons in the pages are inline SVGs from Lucide (https://lucide.dev), ISC license.

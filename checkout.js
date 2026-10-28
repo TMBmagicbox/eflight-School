@@ -28,7 +28,7 @@ function loadPayPal(){
 }
 function renderCheckout(){
  const box=$("co");if(!box)return;
- if(done){box.innerHTML=`<div class="okbox"><div class="okic">✓</div><h2>${t("co_ok_h")}</h2><p>${t("co_ok_p")}</p><a class="btn" href="courses.html">${t("co_back")}</a></div>`;return}
+ if(done){box.innerHTML=`<div class="okbox"><div class="okic">${ico(PATH.check,32)}</div><h2>${t("co_ok_h")}</h2><p>${t("co_ok_p")}</p><a class="btn" href="courses.html">${t("co_back")}</a></div>`;return}
  const list=items();
  if(!list.length){box.innerHTML=`<div class="okbox"><p>${t("co_empty")}</p><a class="btn" href="courses.html">${t("co_back")}</a></div>`;return}
  const keep={n:($("cn")||{}).value||"",e:($("ce")||{}).value||""};
@@ -36,11 +36,11 @@ function renderCheckout(){
  box.innerHTML=`<div class="cogrid">
  <div class="cobox"><h2>${t("co_info")}</h2><div class="coform"><input id="cn" placeholder="${t("ph_name")}" value="${keep.n}"><input id="ce" type="email" placeholder="${t("ph_mail")}" value="${keep.e}"></div>
   <h2 style="margin-top:26px">${t("co_pay")}</h2>
-  <div class="tabs"><button class="${method==="pp"?"on":""}" onclick="pickMethod('pp')">🅿 ${t("co_pp")}</button><button class="${method==="stripe"?"on":""}" onclick="pickMethod('stripe')">💳 ${t("co_stripe")}</button></div>
-  ${DEMO?`<div class="demo">⚠ ${t("co_demo")}</div>`:""}
+  <div class="tabs"><button class="${method==="pp"?"on":""}" onclick="pickMethod('pp')">${ico(PATH.bank,18)} ${t("co_pp")}</button><button class="${method==="stripe"?"on":""}" onclick="pickMethod('stripe')">${ico(PATH.card,18)} ${t("co_stripe")}</button></div>
+  ${DEMO?`<div class="demo">${ico(PATH.alert,18)}<span>${t("co_demo")}</span></div>`:""}
   ${showPP?`<div id="ppbox"></div>`:`<button class="btn" id="pbtn" style="width:100%;margin-top:14px" onclick="payBtn()">${DEMO?t("co_sim"):(method==="pp"?t("co_btn_pp"):t("co_btn_stripe"))} · $${total()}</button>`}
-  <p class="sec">🔒 ${t("co_secure")}</p></div>
- <div class="cobox sum"><h2>${t("co_sum")}</h2>${list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${c.e}</div><div><b>${c.t[lang]}</b></div><span>$${c.p}</span></div>`).join("")}
+  <p class="sec">${ico(PATH.lock,16)}<span>${t("co_secure")}</span></p></div>
+ <div class="cobox sum"><h2>${t("co_sum")}</h2>${list.map(c=>`<div class="it"><div class="ic" style="background:linear-gradient(135deg,${c.g})">${courseIcon(c.e)}</div><div><b>${c.t[lang]}</b></div><span>$${c.p}</span></div>`).join("")}
   <div class="row"><span>${t("total")}</span><span>$${total()}</span></div></div></div>`;
  if(showPP)loadPayPal(),paypalRetry();
 }
