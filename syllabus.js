@@ -16,6 +16,18 @@ function buildSyllabus(course){
   {code:"U3",title:t("sy_u3"),lessons:core.slice(mid)},
   {code:"FP",title:t("sy_final"),lessons:fin}
  ].filter(u=>u.lessons.length);
+ units.forEach((u,i)=>{
+  const n=i+1;
+  u.blurb=t("unit_blurb");
+  u.tasks=[
+   {id:course.id+"-"+u.code+"-p1",chip:"PRÁCTICA "+n+".1",title:t("task_a")},
+   {id:course.id+"-"+u.code+"-p2",chip:"PRÁCTICA "+n+".2",title:t("task_b")}
+  ];
+  u.resources=[
+   {id:course.id+"-"+u.code+"-r1",name:t("res_pdf"),kind:"PDF"},
+   {id:course.id+"-"+u.code+"-r2",name:t("res_doc"),kind:"DOC"}
+  ];
+ });
  const lessons=units.reduce((a,u)=>a.concat(u.lessons.map(l=>Object.assign({unit:u.code},l))),[]);
  lessons.forEach(l=>{l.placeholder=true;l.resource={name:t("sy_notes"),placeholder:true}});
  return {units,lessons,placeholder:true};

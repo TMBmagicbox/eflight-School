@@ -1,67 +1,122 @@
-/* Course player: video, syllabus, notes, comments, completion. */
-let lessonId=null, player, pane="com";
+/* Unit player: one page per unit, lessons stacked, tasks, resources. */
+let players=[];
 function cid(){return +new URLSearchParams(location.search).get("id")||1}
 function poster(c){return coursePoster(c)}
-function current(syl){return syl.lessons.find(l=>l.id===lessonId)||syl.lessons[0]}
-function go(id){lessonId=id;const u=new URL(location.href);u.searchParams.set("lesson",id);history.replaceState(null,"",u);if(EFSStore.user())EFSStore.setLast(cid(),id);renderLearn()}
+function unitOf(syl){
+ const q=new URLSearchParams(location.search);
+ const want=q.get("unit");
+ if(want&&syl.units.some(u=>u.code===want))return want;
+ const lesson=q.get("lesson")||(EFSStore.user()&&EFSStore.prog(cid()).last);
+ if(lesson){const l=syl.lessons.find(x=>x.id===lesson);if(l)return l.unit}
+ const prog=EFSStore.user()?EFSStore.prog(cid()):{units:{}};
+ const open=syl.units.find(u=>!(prog.units||{})[u.code]);
+ return (open||syl.units[0]).code;
+}
+function goUnit(code){
+ const u=new URL(location.href);u.searchParams.set("unit",code);u.searchParams.delete("lesson");
+ history.pushState(null,"",u);renderLearn();window.scrollTo(0,0);
+}
 function renderLearn(){
+ players.forEach(p=>p.stop&&p.stop());players=[];
  const c=courseById(cid());const root=$("app");if(!c||!root)return;
- const syl=buildSyllabus(c);
- if(!lessonId)lessonId=new URLSearchParams(location.search).get("lesson")||(EFSStore.prog(c.id).last)||syl.lessons[0].id;
- const lesson=current(syl);const owned=EFSStore.owns(c.id);const preview=lesson===syl.lessons[0];
- const prog=EFSStore.prog(c.id);const st=EFSStore.stats(c.id,syl.lessons.length);
- document.title=lesson.title+" | "+c.t[lang];
+ const syl=buildSyllabus(c);const code=unitOf(syl);
+ const unit=syl.units.find(u=>u.code===code)||syl.units[0];
+ const owned=EFSStore.owns(c.id);const preview=unit===syl.units[0];
  if(!owned&&!preview){root.innerHTML=`<div class="wrap" style="padding:40px 0"><h1>${esc(c.t[lang])}</h1><p>${ico(PATH.lock,18)} ${t("dk_lock")}</p><a class="btn" href="confirm.html?id=${c.id}">${t("dk_buy")} · $${c.p}</a></div>`;return}
- const idx=syl.lessons.findIndex(l=>l.id===lesson.id);
- const prev=syl.lessons[idx-1], next=syl.lessons[idx+1];
- const done=!!prog.done[lesson.id];
- root.innerHTML=`<div class="player">
-  <div><div id="stage" class="trailer" style="border-radius:0"></div>
-   <div class="pbody">
-    <h1 style="font-size:1.4rem">${esc(lesson.title)}</h1>
-    <p>${esc(c.t[lang])} · ${fmtMin(lesson.min)} · ${st.pct}% </p>
-    <div class="progbar" style="margin:8px 0 14px"><i style="width:${st.pct}%"></i></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-     <button class="btn s" ${prev?"":"disabled"} onclick="${prev?`go('${prev.id}')`:""}">${t("pl_prev")}</button>
-     <button class="btn s" onclick="mark(${!done})">${done?t("pl_undone"):t("pl_done")}</button>
-     <button class="btn s" ${next?"":"disabled"} onclick="${next?`go('${next.id}')`:""}">${t("pl_next")}</button>
-     ${st.complete?`<a class="btn s" href="my-courses.html?cert=${c.id}">${t("pl_cert")}</a>`:""}
-    </div>
-    <div class="ptabs" style="margin-top:16px">
-     ${[["com","pl_com"],["notes","pl_notes"],["res","pl_res"]].map(([k,lab])=>`<button class="${pane===k?"on":""}" onclick="pane='${k}';renderLearn()">${t(lab)}</button>`).join("")}
-    </div>
-    <div id="pane"></div>
-   </div></div>
-  <aside class="side"><div style="padding:12px"><b>${esc(c.t[lang])}</b><div class="progbar" style="margin-top:8px"><i style="width:${st.pct}%"></i></div><small>${st.pct}% · ${st.done}/${syl.lessons.length}</small></div>
-   ${syl.units.map(u=>`<div><div style="padding:8px 12px;font-weight:700;background:#f5f8fc">${esc(u.code)} ${esc(u.title)}</div>${u.lessons.map(l=>`<button class="lessbtn ${l.id===lesson.id?"on":""}" onclick="go('${l.id}')"><span class="tick ${prog.done[l.id]?"on":""}"></span><span>${esc(l.title)}<br><small style="color:var(--mut)">${fmtMin(l.min)}</small></span></button>`).join("")}</div>`).join("")}
-  </aside></div>`;
- if(player)player.stop();
- player=mountPlayer($("stage"),{poster:poster(c),src:lesson.video,title:lesson.title,seconds:10,onEnded:()=>{if(EFSStore.user())mark(true)}});
- const paneEl=$("pane");
- if(pane==="notes"){
-  const note=(prog.notes&&prog.notes[lesson.id])||"";
-  paneEl.innerHTML=`<textarea class="note" id="note">${esc(note)}</textarea><button class="btn s" style="margin-top:8px" onclick="saveN()">${t("dk_send")}</button>`;
- }else if(pane==="res"){
-  paneEl.innerHTML=`<p>${ico(PATH.clipboard,16)} ${esc(lesson.resource.name)}</p><p class="phbanner">${t("res_empty")}</p>`;
- }else paneEl.innerHTML=commentPane(c,lesson);
+ const prog=EFSStore.user()?EFSStore.prog(c.id):{units:{},tasks:{},resume:{},done:{}};
+ const st=EFSStore.stats(c.id,syl.lessons.length,syl.units.length);
+ const done=!!(prog.units||{})[unit.code];
+ const idx=syl.units.findIndex(u=>u.code===unit.code);
+ const next=syl.units[idx+1];
+ document.title=unit.title+" | "+c.t[lang];
+ if(EFSStore.user()&&unit.lessons[0])EFSStore.setLast(c.id,unit.lessons[0].id);
+ const tabs=courseTabs(c,"content");
+ root.innerHTML=`<div class="unitpage">
+  <div class="umain">
+   <div class="bc"><a href="index.html">${t("n_home")}</a> › <a href="my-courses.html">${t("my_h")}</a> › <a href="course.html?id=${c.id}">${esc(c.t[lang])}</a> › ${esc(unit.code)}</div>
+   ${tabs}
+   <h1 class="ctitle">${esc(c.t[lang])}</h1>
+   <p class="byline">${t("dk_by")} ${esc(t("sy_teacher"))}, ${esc(t("sy_role"))}</p>
+   <h2>${esc(unit.code)} · ${esc(unit.title)} ${done?`<span class="donechip">${t("unit_done")}</span>`:""}</h2>
+   <p>${esc(unit.blurb)}</p>
+   ${unit.lessons.map(l=>lessonBlock(c,l,prog)).join("")}
+   <h2 id="tareas">${t("tasks_h")}</h2>
+   ${unit.tasks.map(task=>`<div class="taskrow"><label><input type="checkbox" ${prog.tasks&&prog.tasks[task.id]?"checked":""} onchange="taskToggle('${task.id}',this.checked)"> ${esc(task.title)}</label> <span class="pchip">${esc(task.chip)}</span> <a href="forum.html?id=${c.id}&practice=${encodeURIComponent(task.chip)}">${t("task_open")}</a></div>`).join("")}
+   <h2 id="recursos">${t("res_h")}</h2>
+   ${unit.resources.map(r=>`<div class="resrow"><span class="kind">${esc(r.kind)}</span><div><b>${esc(r.name)}</b><br><small>${esc(t("res_ph"))}</small></div><button class="btn s" data-name="${esc(r.name)}" onclick="dlRes(this.dataset.name)">${t("res_dl")}</button></div>`).join("")}
+   <div class="unitend">
+    <button class="btn" onclick="markUnit(${!done})">${done?t("unmark_unit"):t("mark_unit")}</button>
+    ${next?`<button class="textbtn" onclick="goUnit('${next.code}')">${t("next_unit")} ${ico(PATH.chevR,16)}</button>`:`<a class="textbtn" href="forum.html?id=${c.id}">${t("go_forum")}</a>`}
+   </div>
+  </div>
+  <aside class="uside">
+   <p class="kicker">${t("sum_h")}</p>
+   <p class="kicker">${t("units_h")}</p>
+   ${syl.units.map(u=>{
+    const on=!!(prog.units||{})[u.code];
+    return `<a class="urow ${u.code===unit.code?"on":""}" href="learn.html?id=${c.id}&unit=${u.code}"><span class="ubadge">${esc(u.code)}</span><span>${esc(u.title)}</span><span class="tick ${on?"on":""}"></span></a>`;
+   }).join("")}
+   <a class="textbtn" href="#recursos">${t("res_h")}</a>
+   ${rateCard(c)}
+  </aside>
+ </div>
+ <div class="mobuy"><b>${st.pct}%</b><span>${st.unitsDone}/${syl.units.length}</span></div>`;
+ window.__efsStopOthers=me=>{players.forEach(p=>{if(p!==me)p.stop()})};
+ unit.lessons.forEach(l=>{
+  const box=document.getElementById("stage-"+l.id); if(!box)return;
+  const resume=(prog.resume&&prog.resume[l.id])||0;
+  const dur=Math.max(20,Math.round(l.min*60));
+  players.push(mountPlayer(box,{
+   poster:poster(c),src:l.video,title:l.title,seconds:dur,startAt:resume,resumeAt:resume,
+   playLabel:l.title,
+   onTime:s=>{if(EFSStore.user()&&s>1)EFSStore.setResume(c.id,l.id,s)},
+   onNext:()=>{const i=unit.lessons.findIndex(x=>x.id===l.id);const n=unit.lessons[i+1];if(n)document.getElementById("les-"+n.id).scrollIntoView({behavior:"smooth",block:"start"})}
+  }));
+ });
 }
-function commentPane(c,lesson){
- const all=EFSStore.comments(c.id,lesson.id);
- const top=all.filter(x=>!x.parentId);
- function one(cm,reply){
-  const kids=all.filter(x=>x.parentId===cm.id).map(k=>one(k,true)).join("");
-  return `<article class="comment ${reply?"reply":""}"><b>${esc(cm.name)}</b> <small>${new Date(cm.at).toLocaleString()}</small><p>${esc(cm.text)}</p>
-   <button class="likebtn" onclick="likeC('${cm.id}')">${t("pl_like")} ${cm.likes.length}</button>
-   ${reply?"":`<button class="likebtn" onclick="document.getElementById('re-${cm.id}').hidden=false">${t("pl_reply")}</button>
-   <form id="re-${cm.id}" hidden onsubmit="return sendC(event,'${lesson.id}','${cm.id}')"><input name="text" required><button class="btn s">${t("pl_reply")}</button></form>`}
-   ${kids}</article>`;
- }
- const form=EFSStore.user()?`<form onsubmit="return sendC(event,'${lesson.id}','')" style="margin-top:8px"><textarea name="text" required placeholder="${esc(t("pl_write"))}" rows="3"></textarea><button class="btn s">${t("dk_send")}</button></form>`:`<p><a href="account.html?next=${encodeURIComponent(location.pathname+location.search)}">${t("login")}</a></p>`;
- return (top.length?top.map(c=>one(c,false)).join(""):`<p>${t("pl_empty")}</p>`)+form;
+function lessonBlock(c,l,prog){
+ const resume=(prog.resume&&prog.resume[l.id])||0;
+ const dur=Math.max(20,Math.round(l.min*60));
+ const hint=resume>2?`<p class="resume">${t("resume_at")} · ${clock(resume)} / ${clock(dur)}</p>`:"";
+ return `<article class="lessonblock" id="les-${l.id}">
+  <h3>${esc(l.title)}</h3>
+  <p class="muted">${ico(PATH.clock,14)} ${fmtMin(l.min)}</p>
+  ${hint}
+  <div class="trailer" id="stage-${l.id}"></div>
+  <p>${esc(t("lesson_blurb"))}</p>
+ </article>`;
 }
-function sendC(ev,lesson,parent){ev.preventDefault();if(!EFSStore.user()){toast(t("need_login"));return false}EFSStore.addComment(cid(),lesson,new FormData(ev.target).get("text"),parent||null);renderLearn();return false}
-function likeC(id){if(!EFSStore.user()){toast(t("need_login"));return}EFSStore.likeComment(id);renderLearn()}
-function mark(on){if(!EFSStore.user()){toast(t("need_login"));return}EFSStore.toggleDone(cid(),lessonId,on);renderLearn()}
-function saveN(){if(!EFSStore.user()){toast(t("need_login"));return}EFSStore.saveNote(cid(),lessonId,$("note").value);toast(t("saved_ok"))}
+function clock(s){s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function courseTabs(c,on){
+ const item=(key,href,label)=>`<a class="${on===key?"on":""}" href="${href}">${label}</a>`;
+ return `<nav class="tabsbar tabsnav">
+  ${item("info","course.html?id="+c.id,t("dk_info"))}
+  ${item("content","learn.html?id="+c.id+"&unit="+unitOf(buildSyllabus(c)),t("dk_content"))}
+  ${item("community","forum.html?id="+c.id,t("dk_community"))}
+  ${item("projects","course.html?id="+c.id+"&tab=projects",t("dk_projects"))}
+ </nav>`;
+}
+function rateCard(c){
+ if(!EFSStore.owns(c.id))return "";
+ const prog=EFSStore.prog(c.id);
+ if(prog.dismissRate)return "";
+ if(EFSStore.reviews(c.id).some(r=>EFSStore.user()&&r.userId===EFSStore.user().id))return "";
+ return `<div class="ratecard"><button type="button" class="x" onclick="EFSStore.dismissRate(${c.id});renderLearn()" aria-label="×">×</button>
+  <h3>${t("rate_q")}</h3><p>${t("rate_p")}</p>
+  <a class="btn" href="course.html?id=${c.id}&tab=info#reviews">${t("rate_btn")}</a></div>`;
+}
+function taskToggle(id,on){if(!EFSStore.user()){toast(t("need_login"));renderLearn();return}EFSStore.toggleTask(cid(),id,on)}
+function markUnit(on){
+ if(!EFSStore.user()){toast(t("need_login"));return}
+ const c=courseById(cid());const syl=buildSyllabus(c);const code=unitOf(syl);
+ const unit=syl.units.find(u=>u.code===code);
+ EFSStore.toggleUnit(c.id,code,on,unit.lessons.map(l=>l.id));
+ renderLearn();
+}
+function dlRes(name){
+ const blob=new Blob([t("res_ph")+"\n\n"+name+"\n"],{type:"text/plain"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="eFlight-placeholder.txt";a.click();
+}
 window.onLang=renderLearn;
+window.addEventListener("popstate",renderLearn);
 renderLearn();

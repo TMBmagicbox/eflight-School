@@ -1,5 +1,6 @@
 /* Domestika-style landing for one catalog course. */
-let tab="info", trailer;
+let tab=new URLSearchParams(location.search).get("tab")||"info", trailer;
+if(["info","content","community","projects"].indexOf(tab)<0)tab="info";
 function cid(){return +new URLSearchParams(location.search).get("id")||1}
 function poster(c){return coursePoster(c)}
 function when(ts){const d=Date.now()-ts;const m=Math.round(d/60000);if(m<60)return m+" min";const h=Math.round(m/60);if(h<48)return h+" h";return Math.round(h/24)+" d"}
@@ -29,7 +30,7 @@ function redeemInline(ev,id){ev.preventDefault();const u=EFSStore.user();if(!u){
 
 function lessonCards(c,syl,limit){
  const img=poster(c);
- return syl.lessons.slice(0,limit||6).map(l=>`<a class="lcard" href="${EFSStore.owns(c.id)||l===syl.lessons[0]?"learn.html?id="+c.id+"&lesson="+encodeURIComponent(l.id):"confirm.html?id="+c.id}">
+ return syl.lessons.slice(0,limit||6).map(l=>`<a class="lcard" href="${EFSStore.owns(c.id)||l===syl.lessons[0]?"learn.html?id="+c.id+"&unit="+l.unit:"confirm.html?id="+c.id}">
   <div class="im"><img src="${img}" alt=""><span>${ico('<polygon points="6 3 20 12 6 21 6 3"/>',12,true)}</span></div>
   <div><b>${esc(l.title)}</b><small>${fmtMin(l.min)} · ${t("pl_preview")}</small></div></a>`).join("");
 }
@@ -48,20 +49,7 @@ function reviewsBlock(c){
  return `<h2>${t("dk_reviews")}</h2>${list.length?"":`<p class="phbanner">${t("dk_no_reviews")}</p>`}${form}${items}`;
 }
 function postReview(ev,id){ev.preventDefault();const fd=new FormData(ev.target);const r=EFSStore.addReview(id,fd.get("pos")==="1",fd.get("text"));if(!r.ok)toast(t("acc_exists"));renderCourse();return false}
-function projectsBlock(c){
- const list=EFSStore.projects(c.id);
- const cards=list.map(p=>`<article class="gcard">${p.image?`<img src="${p.image}" alt="">`:`<div class="phg"></div>`}<p><b>${esc(p.title)}</b><br>${esc(p.name)}</p></article>`).join("");
- const form=EFSStore.user()?`<form onsubmit="return postProject(event,${c.id})" style="margin-top:12px"><input name="title" required placeholder="${esc(t("dk_proj_title"))}"><label class="filepick">${t("dk_choose")}<input name="file" type="file" accept="image/*" onchange="this.parentNode.dataset.n=this.files[0]?this.files[0].name:''"></label><button class="btn s" style="margin-top:8px">${t("dk_add_proj")}</button></form>`:"";
- return `<h2>${t("dk_stu")}</h2><p>${t("dk_empty_proj")}</p><div class="gallery">${cards}</div>${form}`;
-}
-function postProject(ev,id){
- ev.preventDefault();
- const fd=new FormData(ev.target);const file=fd.get("file");
- const go=(img)=> {const r=EFSStore.addProject(id,fd.get("title"),img);if(!r.ok)toast(t("acc_fields"));renderCourse()};
- if(file&&file.size){if(file.size>280000){toast(t("acc_fields"));return false}const fr=new FileReader();fr.onload=()=>go(fr.result);fr.readAsDataURL(file)}
- else go("");
- return false;
-}
+function projectsBlock(c){return typeof projectPanel==="function"?projectPanel(c):""}
 function infoPanels(c,syl){
  const topics=t("p_"+c.k+"_topics").split("|");
  const d=t("p_"+c.k+"_d");
@@ -84,7 +72,7 @@ function renderCourse(){
  const syl=buildSyllabus(c);const sum=EFSStore.reviewSummary(c.id);const saved=EFSStore.saved(c.id);
  document.title=c.t[lang]+" | eFlight School";
  const main=tab==="content"?`<h2>${t("dk_content")}</h2>${curriculum(c,syl)}`
-  :tab==="community"?(EFSStore.owns(c.id)?`<h2>${t("dk_community")}</h2><p><a class="btn" href="learn.html?id=${c.id}">${t("pl_com")}</a></p>`:`<h2>${t("dk_community")}</h2><p>${ico(PATH.lock,18)} ${t("dk_lock")}</p>`)
+  :tab==="community"?forumPanel(c)
   :tab==="projects"?projectsBlock(c)
   :infoPanels(c,syl);
  root.innerHTML=`<div class="mini" id="mini"><div class="wrap"><img src="${poster(c)}" alt=""><b>${esc(c.t[lang])}</b><a class="btn s" href="${EFSStore.owns(c.id)?"learn.html?id="+c.id:"confirm.html?id="+c.id}">${EFSStore.owns(c.id)?t("continue_lbl"):t("dk_buy")}</a></div></div>
@@ -112,8 +100,9 @@ function renderCourse(){
  if(tab==="info"){
   const box=$("trailer");
   if(trailer)trailer.stop();
-  trailer=mountPlayer(box,{poster:poster(c),title:c.t[lang],seconds:12,playLabel:t("dk_trailer")});
+  trailer=mountPlayer(box,{poster:poster(c),title:c.t[lang],seconds:12,playLabel:t("dk_trailer"),simple:true});
  }
+ if(location.hash==="#reviews"&&$("reviews"))$("reviews").scrollIntoView();
 }
 function shareCourse(){const url=location.href;if(navigator.clipboard)navigator.clipboard.writeText(url);toast(url)}
 function saveCourse(id){if(!EFSStore.user()){toast(t("need_login"));return}EFSStore.toggleSaved(id);toast(t("saved_ok"));renderCourse()}
