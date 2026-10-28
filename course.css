@@ -108,6 +108,8 @@ form[hidden],[hidden]{display:none!important}
 @media(max-width:860px){
  .course-layout,.player,.lesson-grid,.expect,.unit,.gallery{grid-template-columns:minmax(0,1fr)}
  .tabsbar,.lesson-grid,.lcard{max-width:100%}
+ .tabsbar{flex-wrap:wrap;overflow:visible;row-gap:0}
+ .tabsbar button{flex:0 0 auto}
  .buycol{position:static}
  .player .side{max-height:none;border-left:0}
  .mobuy{display:flex;position:sticky;bottom:0;z-index:45;background:#fff;border-top:1px solid #e3eaf4;padding:10px 16px;gap:10px;align-items:center}
