@@ -5,7 +5,9 @@ let method=CFG.paypalClientId||!CFG.stripePaymentLink?"pp":"stripe",done=false,p
 const items=()=>cart.map(i=>COURSES.find(c=>c.id===i)).filter(Boolean);
 const total=()=>items().reduce((s,c)=>s+c.p,0);
 function who(){const n=$("cn").value.trim(),e=$("ce").value.trim();return n&&/\S+@\S+\.\S+/.test(e)?{n,e}:null}
-function finish(){done=true;cart=[];save();renderCheckout()}
+function finish(){
+ if(window.EFSStore&&EFSStore.user())items().forEach(c=>EFSStore.grantCurrent(c.id,"cart-demo"));
+ done=true;cart=[];save();renderCheckout()}
 function pickMethod(m){method=m;renderCheckout()}
 function payBtn(){
  if(!who())return toast(t("co_need"));

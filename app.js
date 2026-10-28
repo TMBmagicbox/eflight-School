@@ -65,6 +65,8 @@ function shell(){
    </ul></li>
   <li><a href="faq.html" ${on("faq")} data-i18n="n_faq"></a></li>
   <li><a href="contact.html" ${on("contact")} data-i18n="n_contact"></a></li>
+  <li><a href="my-courses.html" ${on("mycourses")} data-i18n="my_h"></a></li>
+  <li><a href="account.html" id="acct" ${on("account")} data-i18n="login"></a></li>
  </ul></nav>
  <div style="display:flex;gap:14px;align-items:center">
   <div class="langs" id="langs">
@@ -96,7 +98,8 @@ document.addEventListener("click",()=>{const l=$("langs");l&&l.classList.remove(
 function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
 function pageTitle(){
  if(PCAT)return t("p_"+PCAT+"_h")+" | eFlight School";
- return {home:t("title"),checkout:t("co_h")+" | eFlight School",about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School"}[PAGE]||t("title");
+ const named={home:t("title"),checkout:t("co_h")+" | eFlight School",confirm:t("co2_h")+" | eFlight School",about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School",mycourses:t("my_h")+" | eFlight School",account:t("acc_h")+" | eFlight School",learn:t("my_h")+" | eFlight School",course:t("n_courses")+" | eFlight School"};
+ return named[PAGE]||t("title");
 }
 function applyLang(){
  document.documentElement.lang=lang;
@@ -110,6 +113,8 @@ function applyLang(){
  document.querySelectorAll("[data-i18n-ph]").forEach(e=>e.placeholder=t(e.dataset.i18nPh));
  const pl=$("pil");if(pl){const x=t("pil").split("|");pl.innerHTML=`<h2>${x[0]}</h2><h2>${x[1]}</h2><p>${x[2]}</p>`}
  render();drawCart();
+ const acct=$("acct");
+ if(acct&&window.EFSStore){const u=EFSStore.user();if(u){acct.textContent=u.name.split(" ")[0];acct.removeAttribute("data-i18n")}else{acct.dataset.i18n="login";acct.textContent=t("login")}}
  if(window.onLang)onLang();
  if(PCAT) initCatSlider();
 }
@@ -169,10 +174,10 @@ function render(){
  const list=COURSES.filter(c=>(cat==="all"||c.k===cat)&&c.t[lang].toLowerCase().includes(q));
  box.innerHTML=list.map(c=>`
  <div class="course"><div class="thumb" style="background:linear-gradient(135deg,${c.g})"><span class="lvl">${t('l_'+c.l)}</span>${courseIcon(c.e,42)}</div>
- <div class="cb"><small style="color:var(--sky);font-weight:700">${t('c_'+c.k)}</small><h3>${c.t[lang]}</h3>
+ <div class="cb"><small style="color:var(--sky);font-weight:700">${t('c_'+c.k)}</small><h3><a href="course.html?id=${c.id}">${c.t[lang]}</a></h3>
  <div class="meta"><span>${ico(PATH.clock,14)} ${c.h} h</span><span>${ico(PATH.film,14)} ${c.n} ${t('lessons')}</span></div>
  <div class="stars">${stars(Math.round(c.r))} <span style="color:var(--mut)">${c.r}</span></div>
- <div class="cf"><div class="price">$${c.p}<s>$${c.o}</s></div><button class="btn s" onclick="add(${c.id})">${t('add')}</button></div></div></div>`).join("")||`<p style='text-align:center;grid-column:1/-1;color:var(--mut)'>${t('none')}</p>`;
+ <div class="cf"><div class="price">$${c.p}<s>$${c.o}</s></div><span style="display:flex;gap:6px"><a class="btn s" style="background:#fff;color:var(--navy);border:2px solid var(--navy)" href="course.html?id=${c.id}">${t('details')}</a><button class="btn s" onclick="add(${c.id})">${t('add')}</button></span></div></div></div>`).join("")||`<p style='text-align:center;grid-column:1/-1;color:var(--mut)'>${t('none')}</p>`;
 }
 
 /* ---------- Carrito ---------- */
