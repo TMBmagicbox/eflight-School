@@ -105,6 +105,71 @@
 .codeform .btn{align-self:flex-start}
 form[hidden],[hidden]{display:none!important}
 .payopt.on{border-color:var(--sky);background:#eaf4fe}
+.vcontrols{position:absolute;left:0;right:0;bottom:0;display:flex;gap:6px;align-items:center;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-size:.72rem;z-index:2}
+.vcontrols button{background:transparent;border:0;color:#fff;font:inherit;cursor:pointer;padding:2px 4px}
+.vcontrols button.on{color:var(--amber)}
+.vscrub{flex:1;height:6px;background:rgba(255,255,255,.35);border-radius:99px;position:relative;cursor:pointer;min-width:40px}
+.vscrub i{position:absolute;left:0;top:0;bottom:0;background:var(--amber);width:0;border-radius:99px}
+.vscrub .mark{position:absolute;top:-3px;width:2px;height:12px;background:#fff}
+.ccdemo{position:absolute;left:12px;bottom:48px;background:rgba(0,0,0,.72);color:#fff;padding:4px 8px;border-radius:6px;font-size:.8rem}
+.unitpage,.forumlayout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:22px;max-width:1180px;margin:0 auto;padding:18px 20px 48px}
+.uside{position:sticky;top:84px;align-self:start}
+.kicker{letter-spacing:.06em;font-size:.72rem;font-weight:800;color:var(--sky);text-transform:uppercase}
+.urow{display:grid;grid-template-columns:40px 1fr 20px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #edf1f7;color:inherit}
+.ubadge{width:36px;height:36px;border-radius:50%;background:#e8eef6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem}
+.urow.on .ubadge{background:var(--navy);color:#fff}
+.donechip{display:inline-block;background:#e7f7ee;color:#157a3d;font-size:.72rem;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:8px}
+.lessonblock{margin:18px 0 28px}
+.taskrow,.resrow{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #edf1f7;flex-wrap:wrap}
+.resrow .kind{font-weight:800;font-size:.72rem;background:#eef3f8;border-radius:8px;padding:8px}
+.pchip{background:var(--sky);color:#fff;border-radius:99px;font-size:.68rem;font-weight:800;padding:2px 8px;letter-spacing:.03em}
+.pchip.hide{display:none}
+.unitend{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:22px 0 40px;flex-wrap:wrap}
+.resume{color:var(--sky);font-weight:700}
+.mycard{display:grid;grid-template-columns:280px 1fr;gap:0;background:#fff;border-radius:16px;overflow:hidden;margin:0 0 16px;box-shadow:0 8px 28px rgba(11,29,58,.08)}
+.mythumb{position:relative;min-height:170px;background:#12305f}
+.mythumb img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.mythumb span{position:absolute;left:12px;bottom:12px;background:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.mycard>div{padding:16px 18px}
+.mycard h2{font-size:1.15rem;margin:4px 0}
+.progbar.thin{height:4px;margin:8px 0}
+.myacts{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.mylist{display:flex;flex-direction:column}
+.relgrid,.pgallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.relcard,.pcard{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(11,29,58,.06);color:inherit}
+.relcard img,.pcard img{width:100%;height:150px;object-fit:cover;display:block}
+.relcard b,.pcard b,.pcard small{display:block;padding:0 10px}
+.pcard small{padding-bottom:10px;color:var(--mut)}
+.pcard .phg{height:150px}
+.publishbox{display:flex;gap:14px;align-items:center;border:1px solid #e3eaf4;border-radius:16px;padding:16px;margin-bottom:16px;background:#fff}
+.redeemrow{display:flex;gap:8px;margin-top:18px;max-width:420px}
+.redeemrow input{flex:1}
+.forumhead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.fsearch input,.composer input,.composer textarea,.stepcard input,.stepcard textarea,.edhead input{width:100%;font:inherit;border:1px solid #d5dfee;border-radius:10px;padding:10px;margin:6px 0}
+.trow{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:1px solid #edf1f7;align-items:center;color:inherit}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800}
+.fsub{display:flex;flex-direction:column;gap:8px;font-weight:700;margin-bottom:16px}
+.fsub a{color:var(--navy)}
+.fsub a.on{color:var(--amber)}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.tabsnav a{padding:10px 0;font-weight:700;color:var(--mut);border-bottom:3px solid transparent;flex:0 0 auto}
+.tabsnav a.on{color:var(--navy);border-bottom-color:var(--navy)}
+.composer{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.tools{display:flex;gap:6px}
+.tools button{border:1px solid #d5dfee;background:#fff;border-radius:8px;padding:4px 8px;font:inherit;cursor:pointer}
+.tbody blockquote,.comment blockquote{border-left:3px solid var(--sky);margin:8px 0;padding-left:8px}
+.ratecard{border:1px solid #e3eaf4;border-radius:16px;padding:16px;margin-top:16px;background:#fff;position:relative}
+.ratecard .x{position:absolute;right:8px;top:4px;border:0;background:none;font-size:1.3rem;cursor:pointer}
+.editor{padding:20px 0 60px}
+.edhead{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fff;border-radius:16px;padding:12px}
+.edhead img{width:84px;height:56px;object-fit:cover;border-radius:8px}
+.edhead input{flex:1;min-width:180px}
+.stepcard{background:#fff;border-radius:16px;padding:16px;margin:12px 0}
+.stepimg{max-width:280px;border-radius:10px;display:block;margin:8px 0}
+.backtop{position:fixed;bottom:18px;left:18px;background:#fff;border-radius:99px;padding:8px 12px;box-shadow:0 4px 16px rgba(0,0,0,.15);font-size:.8rem;z-index:30}
+.muted{color:var(--mut)}
+.sortrow{display:flex;gap:12px;align-items:center;margin:12px 0}
+.reply{margin:8px 0 0 12px;padding-left:10px;border-left:2px solid #e3eaf4}
 @media(max-width:860px){
  .course-layout,.player,.lesson-grid,.expect,.unit,.gallery{grid-template-columns:minmax(0,1fr)}
  .tabsbar,.lesson-grid,.lcard{max-width:100%}
@@ -115,4 +180,8 @@ form[hidden],[hidden]{display:none!important}
  .mobuy{display:flex;position:sticky;bottom:0;z-index:45;background:#fff;border-top:1px solid #e3eaf4;padding:10px 16px;gap:10px;align-items:center}
  .mobuy .btn{flex:1;text-align:center}
  .lcard{grid-template-columns:96px 1fr}
+ .unitpage,.forumlayout,.mycard,.pgallery,.relgrid{grid-template-columns:minmax(0,1fr)}
+ .uside{position:static}
+ .mythumb{height:190px}
+ .vcontrols{flex-wrap:wrap}
 }

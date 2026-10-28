@@ -104,7 +104,7 @@ document.addEventListener("click",()=>{const l=$("langs");l&&l.classList.remove(
 function setLang(l){lang=l;localStorage.setItem("lang",l);applyLang()}
 function pageTitle(){
  if(PCAT)return t("p_"+PCAT+"_h")+" | eFlight School";
- const named={home:t("title"),checkout:t("co_h")+" | eFlight School",confirm:t("co2_h")+" | eFlight School",about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School",mycourses:t("my_h")+" | eFlight School",account:t("acc_h")+" | eFlight School",learn:t("my_h")+" | eFlight School",course:t("n_courses")+" | eFlight School"};
+ const named={home:t("title"),checkout:t("co_h")+" | eFlight School",confirm:t("co2_h")+" | eFlight School",about:t("ab_title")+" | eFlight School",courses:t("cat_h")+" | eFlight School",faq:t("faq_h")+" | eFlight School",contact:t("ct_h")+" | eFlight School",mycourses:t("my_h")+" | eFlight School",account:t("acc_h")+" | eFlight School",learn:t("my_h")+" | eFlight School",course:t("n_courses")+" | eFlight School",forum:t("my_h")+" | eFlight School",project:t("my_h")+" | eFlight School"};
  return named[PAGE]||t("title");
 }
 function applyLang(){
