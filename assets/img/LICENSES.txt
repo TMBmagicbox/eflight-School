@@ -68,4 +68,31 @@ flex.jpg
   https://www.pexels.com/photo/brunette-woman-sitting-at-table-with-laptop-in-library-8199258/
   License: Pexels License
 
+Course cards use one photo each. Files reused from the list above are private.jpg,
+hero2.jpg, instruments.jpg, instruments2.jpg, comercial.jpg, comercial2.jpg and flex.jpg.
+
+c1.jpg — Pilot with a headset in a light-aircraft cockpit (ATC communication).
+  Photographer: Maël Balland
+  https://www.pexels.com/photo/close-up-of-a-man-wearing-a-headphone-and-sunglasses-inside-an-aircraft-cockpit-3099043/
+  License: Pexels License
+
+c2.jpg — Pilot speaking on the radio in flight (advanced phraseology).
+  Photographer: Leah Newhouse
+  https://www.pexels.com/photo/pilot-flying-a-plane-9293279/
+  License: Pexels License
+
+c5.jpg — Cockpit above a cloud layer (meteorology).
+  Photographer: Rhys Abel
+  https://www.pexels.com/photo/airplane-cockpit-during-flight-10059835/
+  License: Pexels License
+
+c6.jpg — Moving map and flight instruments (navigation).
+  Photographer: Laura Meinhardt
+  https://www.pexels.com/photo/cockpit-view-of-airplane-navigation-instruments-37087491/
+  License: Pexels License
+
+c10.jpg — Airliner engine and wing on the ramp (aircraft systems).
+  https://www.pexels.com/photo/912050/
+  License: Pexels License
+
 Flat icons in the pages are inline SVGs from Lucide (https://lucide.dev), ISC license.
